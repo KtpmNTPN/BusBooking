@@ -24,9 +24,10 @@ public class FXmain extends Application {
         try {
         Parent root = FXMLLoader.load(getClass().getResource("Userlogin.fxml"));
         primaryStage.initStyle(StageStyle.UNDECORATED);
-        primaryStage.setScene(new Scene(root, 1080, 720));
+        primaryStage.setScene(new Scene(root, 1080 , 720));
         primaryStage.show();
         } catch (IOException e) {
+            e.printStackTrace();
         }
         
     }
