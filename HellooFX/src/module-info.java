@@ -8,6 +8,7 @@ module HellooFX {
     requires javafx.media;
     requires javafx.swing;
     requires javafx.web;
+    requires java.base;
     
     opens HellooFX;
 }
