@@ -9,7 +9,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane  fx:id="anchorpane" prefHeight="644.0" prefWidth="940.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="HellooFX.CreateAccountController">
+<AnchorPane fx:id="anchorpane" prefHeight="644.0" prefWidth="940.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="HellooFX.CreateAccountController">
    <children>
       <AnchorPane layoutX="102.0" layoutY="138.0">
          <children>
@@ -28,11 +28,12 @@
             <DropShadow />
          </effect>
          <children>
-            <Button layoutX="126.0" layoutY="289.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="136.0" style="-fx-background-color: pink; -fx-text-fill: #FFF; -fx-font-size: 15px; -fx-font-weight: 700; -fx-backgorund-radius: 8px;" text="CREATE" textAlignment="JUSTIFY" />
-            <TextField layoutX="63.0" layoutY="138.0" prefHeight="26.0" prefWidth="272.0" promptText="Username" />
-            <PasswordField layoutX="63.0" layoutY="191.0" prefHeight="26.0" prefWidth="272.0" promptText="Password" />
+            <Button layoutX="63.0" layoutY="289.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="136.0" style="-fx-background-color: pink; -fx-text-fill: #FFF; -fx-font-size: 15px; -fx-font-weight: 700; -fx-backgorund-radius: 8px;" text="CREATE" textAlignment="JUSTIFY" />
+            <TextField layoutX="70.0" layoutY="137.0" prefHeight="26.0" prefWidth="272.0" promptText="Username" />
+            <PasswordField layoutX="70.0" layoutY="191.0" prefHeight="26.0" prefWidth="272.0" promptText="Password" />
             <Label alignment="CENTER" layoutX="95.0" layoutY="58.0" prefHeight="25.0" prefWidth="204.0" style="-fx-font-size: 16px; -fx-text-fill: blue; -fx-font-size: 15px; -fx-background-radius: 8px; -fx-font-weight: 700;" text="CREATE ACCOUNT" />
             <Label fx:id="lblLogin" alignment="CENTER" layoutX="92.0" layoutY="386.0" onMouseClicked="#openLoginScene" prefHeight="25.0" prefWidth="204.0" style="-fx-font-size: 16px; -fx-text-fill: blue; -fx-font-size: 15px; -fx-background-radius: 8px; -fx-font-weight: 700;" text="I have Account, Log Me in" />
+            <Button fx:id="crexitButton" layoutX="217.0" layoutY="289.0" mnemonicParsing="false" onAction="#crexitButtonAction" prefHeight="42.0" prefWidth="136.0" style="-fx-background-color: pink; -fx-text-fill: #FFF; -fx-font-size: 15px; -fx-font-weight: 700; -fx-backgorund-radius: 8px;" text="EXIT" textAlignment="JUSTIFY" />
          </children>
       </AnchorPane>
    </children>

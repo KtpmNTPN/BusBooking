@@ -18,11 +18,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 
 /**
@@ -38,6 +40,8 @@ public class CreateAccountController implements Initializable {
     private Label lblLogin;
     @FXML
     private AnchorPane anchorpane;
+    @FXML
+    private Button crexitButton;
 
     /**
      * Initializes the controller class.
@@ -64,7 +68,7 @@ public class CreateAccountController implements Initializable {
         //We create sliding up animation using timeline
         Timeline timeline = new Timeline();
         KeyValue keyValue = new KeyValue(root.translateYProperty(),0,Interpolator.EASE_IN);
-        KeyFrame keyFrame = new KeyFrame(Duration.seconds(2), keyValue);
+        KeyFrame keyFrame = new KeyFrame(Duration.seconds(0.5), keyValue);
         //add keyframe to animation
         timeline.getKeyFrames().add(keyFrame);
         
@@ -76,6 +80,13 @@ public class CreateAccountController implements Initializable {
         rootPane.getChildren().remove(anchorpane);
             
         });
+    }
+
+    @FXML
+    private void crexitButtonAction(ActionEvent event) {
+        Stage stage = (Stage) crexitButton.getScene().getWindow();
+        stage.close();
+        
     }
     
 }

@@ -7,6 +7,9 @@ package HellooFX;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ResourceBundle;
 import javafx.animation.Interpolator;
 import javafx.animation.KeyFrame;
@@ -20,14 +23,18 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
+import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 
 /**
@@ -59,6 +66,26 @@ public class LoginController implements Initializable {
     private StackPane rootPane;
     @FXML
     private AnchorPane anchorPane;
+    @FXML
+    private TextField adusernameTextField;
+    @FXML
+    private PasswordField adpasswordTextField;
+    @FXML
+    private Button adloginButton;
+    @FXML
+    private TextField usernameTextField;
+    @FXML
+    private PasswordField passwordTextField;
+    @FXML
+    private Button loginButton;
+    @FXML
+    private Label adloginMessageLabel;
+    @FXML
+    private Label loginMessageLabel;
+    @FXML
+    private Button adexitButton;
+    @FXML
+    private Button exitButton;
 
     /**
      * Initializes the controller class.
@@ -106,7 +133,7 @@ public class LoginController implements Initializable {
         //We create sliding up animation using timeline
         Timeline timeline = new Timeline();
         KeyValue keyValue = new KeyValue(root.translateYProperty(),0,Interpolator.EASE_IN);
-        KeyFrame keyFrame = new KeyFrame(Duration.seconds(2), keyValue);
+        KeyFrame keyFrame = new KeyFrame(Duration.seconds(0.5), keyValue);
         //add keyframe to animation
         timeline.getKeyFrames().add(keyFrame);
         
@@ -118,6 +145,67 @@ public class LoginController implements Initializable {
             rootPane.getChildren().remove(anchorPane);
             
         });
+        
+    }
+
+    @FXML
+    private void adloginButtonAction(ActionEvent event) {
+        if(adusernameTextField.getText().isBlank() == false && adpasswordTextField.getText().isBlank() == false)
+        {
+            adloginMessageLabel.setText("Yoy try to login again");
+        }else{
+            adloginMessageLabel.setText("Please enter username and password");
+        }
+    }
+
+    @FXML
+    private void loginButtonAction(ActionEvent event) {
+        if(usernameTextField.getText().isBlank() == false && passwordTextField.getText().isBlank() == false)
+        {
+            validateLogin();
+        }else{
+            loginMessageLabel.setText("Please enter username and password");
+        }
+    }
+
+    @FXML
+    private void adexitButtonAction(ActionEvent event) {
+        Stage stage = (Stage) adexitButton.getScene().getWindow();
+        stage.close();
+        
+    }
+
+    @FXML
+    private void exitButtonAction(ActionEvent event) {
+        Stage stage = (Stage) exitButton.getScene().getWindow();
+        stage.close();
+        
+    }
+    @FXML
+    public void validateLogin(){
+        DatabaseConnection connectNow = new DatabaseConnection();
+        Connection connectDB = connectNow.getConnection();
+        
+        String verifyLogin = "SELECT count(1) FROM user_account WHERE username = '" + usernameTextField.getText() + "' AND password = '" + passwordTextField.getText() +"'";
+        
+        try {
+            Statement statement = connectDB.createStatement();
+            ResultSet queryResult = statement.executeQuery(verifyLogin);
+            
+            while(queryResult.next()){
+                if(queryResult.getInt(1) == 1){
+                    loginMessageLabel.setText("Congratulations");
+                }else{
+                    loginMessageLabel.setText("Invaild login. Please try again");
+                }
+                
+            }
+            
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+            e.getCause();
+        }
         
     }
     

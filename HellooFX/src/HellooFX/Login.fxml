@@ -41,9 +41,11 @@
                            <content>
                               <AnchorPane prefHeight="200.0" prefWidth="200.0">
                                  <children>
-                                    <TextField layoutX="51.0" layoutY="32.0" prefHeight="26.0" prefWidth="272.0" promptText="Admin Username" />
-                                    <PasswordField layoutX="51.0" layoutY="90.0" prefHeight="26.0" prefWidth="272.0" promptText="Admin Password" />
-                                    <Button layoutX="111.0" layoutY="143.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="136.0" style="-fx-background-color: pink; -fx-text-fill: #FFF; -fx-font-size: 15px; -fx-font-weight: 700; -fx-backgorund-radius: 8px;" text="Login" textAlignment="JUSTIFY" />
+                                    <Label fx:id="adloginMessageLabel" alignment="CENTER" layoutX="57.0" layoutY="129.0" prefHeight="28.0" prefWidth="235.0" style="-fx-text-fill: red; -fx-font-size: 14px;" />
+                                    <TextField fx:id="adusernameTextField" layoutX="38.0" layoutY="32.0" prefHeight="26.0" prefWidth="272.0" promptText="Admin Username" />
+                                    <PasswordField fx:id="adpasswordTextField" layoutX="38.0" layoutY="89.0" prefHeight="26.0" prefWidth="272.0" promptText="Admin Password" />
+                                    <Button fx:id="adloginButton" layoutX="38.0" layoutY="164.0" mnemonicParsing="false" onAction="#adloginButtonAction" prefHeight="42.0" prefWidth="136.0" style="-fx-background-color: pink; -fx-text-fill: #FFF; -fx-font-size: 15px; -fx-font-weight: 700; -fx-backgorund-radius: 8px;" text="Login" textAlignment="JUSTIFY" />
+                                    <Button fx:id="adexitButton" layoutX="187.0" layoutY="164.0" mnemonicParsing="false" onAction="#adexitButtonAction" prefHeight="42.0" prefWidth="136.0" style="-fx-background-color: pink; -fx-text-fill: #FFF; -fx-font-size: 15px; -fx-font-weight: 700; -fx-backgorund-radius: 8px;" text="Exit" textAlignment="JUSTIFY" />
                                  </children>
                               </AnchorPane>
                            </content>
@@ -52,9 +54,11 @@
                            <content>
                               <AnchorPane prefHeight="200.0" prefWidth="200.0">
                                  <children>
-                                    <TextField layoutX="51.0" layoutY="32.0" prefHeight="26.0" prefWidth="272.0" promptText="Username" />
-                                    <PasswordField layoutX="51.0" layoutY="90.0" prefHeight="26.0" prefWidth="272.0" promptText="Password" />
-                                    <Button layoutX="111.0" layoutY="143.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="136.0" style="-fx-background-color: pink; -fx-text-fill: #FFF; -fx-font-size: 15px; -fx-font-weight: 700; -fx-backgorund-radius: 8px;" text="Login" textAlignment="JUSTIFY" />
+                                    <TextField fx:id="usernameTextField" layoutX="38.0" layoutY="32.0" prefHeight="26.0" prefWidth="272.0" promptText="Username" />
+                                    <PasswordField fx:id="passwordTextField" layoutX="38.0" layoutY="93.0" prefHeight="26.0" prefWidth="272.0" promptText="Password" />
+                                    <Button fx:id="loginButton" layoutX="38.0" layoutY="167.0" mnemonicParsing="false" onAction="#loginButtonAction" prefHeight="42.0" prefWidth="136.0" style="-fx-background-color: pink; -fx-text-fill: #FFF; -fx-font-size: 15px; -fx-font-weight: 700; -fx-backgorund-radius: 8px;" text="Login" textAlignment="JUSTIFY" />
+                                    <Label fx:id="loginMessageLabel" alignment="CENTER" layoutX="57.0" layoutY="129.0" prefHeight="28.0" prefWidth="235.0" style="-fx-text-fill: red; -fx-font-size: 14px;" />
+                                    <Button fx:id="exitButton" layoutX="190.0" layoutY="167.0" mnemonicParsing="false" onAction="#exitButtonAction" prefHeight="42.0" prefWidth="136.0" style="-fx-background-color: pink; -fx-text-fill: #FFF; -fx-font-size: 15px; -fx-font-weight: 700; -fx-backgorund-radius: 8px;" text="Exit" textAlignment="JUSTIFY" />
                                  </children>
                               </AnchorPane>
                            </content>
