@@ -24,17 +24,16 @@ import javafx.stage.StageStyle;
  *
  * @author Hau Exoty
  */
-public class UserBookingController implements Initializable {
+public class AdminBookingController implements Initializable {
 
     @FXML
     private AnchorPane anchorPane;
     @FXML
     private ImageView tabPane;
     @FXML
-    private Button uBExitButton;
+    private Button adbAddSeatButton;
     @FXML
-    private Button ubBookingButton;
-    
+    private Button adBExitButton;
 
     /**
      * Initializes the controller class.
@@ -45,18 +44,27 @@ public class UserBookingController implements Initializable {
     }    
 
     @FXML
-    private void uBExitButtonOnAction(ActionEvent event) {
-        Stage stage = (Stage) uBExitButton.getScene().getWindow();
+    private void adbAddSeatButtonOnAction(ActionEvent event) {
+        Stage stage = (Stage) adbAddSeatButton.getScene().getWindow();
         stage.close();
-        
+        busSeatForm();
     }
 
     @FXML
-    private void ubBookingButtonOnAction(ActionEvent event) {
-        Stage stage = (Stage) ubBookingButton.getScene().getWindow();
+    private void adBExitButtonOnAction(ActionEvent event) {
+        Stage stage = (Stage) adBExitButton.getScene().getWindow();
         stage.close();
-        
     }
-    
-    
+    public void busSeatForm(){
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("BusSeat.fxml"));
+            Stage busSeatStage = new Stage();
+            busSeatStage.initStyle(StageStyle.UNDECORATED);
+            busSeatStage.setScene(new Scene(root, 940 , 644));
+            busSeatStage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+            e.getCause();
+        }
+    }
 }

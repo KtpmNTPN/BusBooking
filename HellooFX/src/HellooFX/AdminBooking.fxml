@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane fx:id="anchorPane" prefHeight="644.0" prefWidth="940.0" style="-fx-background-color: pink;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="HellooFX.AdminBookingController">
+   <children>
+      <AnchorPane layoutX="102.0" layoutY="138.0">
+         <children>
+            <ImageView fx:id="tabPane" fitHeight="368.0" fitWidth="407.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Images/UTB8VHyqoL2JXKJkSanr7613lVXaw.png" />
+               </image>
+            </ImageView>
+         </children>
+         <effect>
+            <DropShadow />
+         </effect>
+      </AnchorPane>
+      <Label alignment="CENTER" layoutX="303.0" layoutY="51.0" prefHeight="45.0" prefWidth="355.0" style="-fx-text-fill: Blue; -fx-background-color: pink; -fx-font-size: 30px;" text="OU BusBooking" textAlignment="JUSTIFY">
+         <effect>
+            <DropShadow />
+         </effect>
+      </Label>
+      <Button fx:id="adbAddSeatButton" layoutX="602.0" layoutY="148.0" mnemonicParsing="false" onAction="#adbAddSeatButtonOnAction" prefHeight="53.0" prefWidth="218.0" style="-fx-background-color: pink; -fx-text-fill: Blue; -fx-font-size: 20px;" text="Add Seat" textAlignment="JUSTIFY">
+         <effect>
+            <DropShadow />
+         </effect>
+      </Button>
+      <Button fx:id="adBExitButton" layoutX="602.0" layoutY="453.0" mnemonicParsing="false" onAction="#adBExitButtonOnAction" prefHeight="53.0" prefWidth="218.0" style="-fx-background-color: pink; -fx-text-fill: Blue; -fx-font-size: 20px;" text="Exit" textAlignment="JUSTIFY">
+         <effect>
+            <DropShadow />
+         </effect>
+      </Button>
+      <Button layoutX="602.0" layoutY="296.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="218.0" style="-fx-background-color: pink; -fx-text-fill: Blue; -fx-font-size: 20px;" text="Remove" textAlignment="JUSTIFY">
+         <effect>
+            <DropShadow />
+         </effect>
+      </Button>
+      <Button layoutX="602.0" layoutY="376.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="218.0" style="-fx-background-color: pink; -fx-text-fill: Blue; -fx-font-size: 20px;" text="Search Bus" textAlignment="JUSTIFY">
+         <effect>
+            <DropShadow />
+         </effect>
+      </Button>
+      <Button layoutX="602.0" layoutY="222.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="218.0" style="-fx-background-color: pink; -fx-text-fill: Blue; -fx-font-size: 20px;" text="Change Seat" textAlignment="JUSTIFY">
+         <effect>
+            <DropShadow />
+         </effect>
+      </Button>
+   </children>
+</AnchorPane>

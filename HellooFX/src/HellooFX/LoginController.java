@@ -35,6 +35,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.util.Duration;
 
 /**
@@ -152,7 +153,9 @@ public class LoginController implements Initializable {
     private void adloginButtonAction(ActionEvent event) {
         if(adusernameTextField.getText().isBlank() == false && adpasswordTextField.getText().isBlank() == false)
         {
-            adloginMessageLabel.setText("Yoy try to login again");
+            advalidateLogin();
+            Stage stage = (Stage) adloginButton.getScene().getWindow();
+            stage.close();
         }else{
             adloginMessageLabel.setText("Please enter username and password");
         }
@@ -163,6 +166,8 @@ public class LoginController implements Initializable {
         if(usernameTextField.getText().isBlank() == false && passwordTextField.getText().isBlank() == false)
         {
             validateLogin();
+            Stage stage = (Stage) loginButton.getScene().getWindow();
+            stage.close();
         }else{
             loginMessageLabel.setText("Please enter username and password");
         }
@@ -194,7 +199,8 @@ public class LoginController implements Initializable {
             
             while(queryResult.next()){
                 if(queryResult.getInt(1) == 1){
-                    loginMessageLabel.setText("Congratulations");
+                    //loginMessageLabel.setText("Congratulations");
+                    userBookingFrom();
                 }else{
                     loginMessageLabel.setText("Invaild login. Please try again");
                 }
@@ -208,5 +214,58 @@ public class LoginController implements Initializable {
         }
         
     }
-    
+    @FXML
+    public void userBookingFrom(){
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("UserBooking.fxml"));
+            Stage bookingStage = new Stage();
+            bookingStage.initStyle(StageStyle.UNDECORATED);
+            bookingStage.setScene(new Scene(root, 940 , 644));
+            bookingStage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+            e.getCause();
+        }
+    }
+    @FXML
+    public void advalidateLogin(){
+        DatabaseConnection connectNow = new DatabaseConnection();
+        Connection connectDB = connectNow.getConnection();
+        
+        String verifyLogin = "SELECT count(1) FROM admin_account WHERE username = '" + adusernameTextField.getText() + "' AND password = '" + adpasswordTextField.getText() +"'";
+        
+        try {
+            Statement statement = connectDB.createStatement();
+            ResultSet queryResult = statement.executeQuery(verifyLogin);
+            
+            while(queryResult.next()){
+                if(queryResult.getInt(1) == 1){
+                    //loginMessageLabel.setText("Congratulations");
+                    adminBookingFrom();
+                }else{
+                    adloginMessageLabel.setText("Invaild login. Please try again");
+                }
+                
+            }
+            
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+            e.getCause();
+        }
+        
+    }
+    @FXML
+    public void adminBookingFrom(){
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("AdminBooking.fxml"));
+            Stage adbookingStage = new Stage();
+            adbookingStage.initStyle(StageStyle.UNDECORATED);
+            adbookingStage.setScene(new Scene(root, 940 , 644));
+            adbookingStage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+            e.getCause();
+        }
+    }
 }

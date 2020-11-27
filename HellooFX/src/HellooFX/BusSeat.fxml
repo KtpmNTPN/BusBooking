@@ -38,14 +38,14 @@
             <DropShadow />
          </effect>
       </Label>
-      <ComboBox editable="true" layoutX="648.0" layoutY="222.0" prefHeight="45.0" prefWidth="291.0" />
-      <DatePicker layoutX="648.0" layoutY="334.0" prefHeight="45.0" prefWidth="291.0" />
-      <Button layoutX="471.0" layoutY="453.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="218.0" style="-fx-background-color: pink; -fx-text-fill: Blue; -fx-font-size: 20px;" text="Add" textAlignment="JUSTIFY">
+      <ComboBox fx:id="Box" editable="true" layoutX="648.0" layoutY="222.0" prefHeight="45.0" prefWidth="291.0" promptText="Bus No" />
+      <DatePicker fx:id="date" layoutX="648.0" layoutY="334.0" prefHeight="45.0" prefWidth="291.0" />
+      <Button fx:id="bSAddButton" layoutX="471.0" layoutY="453.0" mnemonicParsing="false" onAction="#bSAddButtonOnAction" prefHeight="53.0" prefWidth="218.0" style="-fx-background-color: pink; -fx-text-fill: Blue; -fx-font-size: 20px;" text="Add" textAlignment="JUSTIFY">
          <effect>
             <DropShadow />
          </effect>
       </Button>
-      <Button layoutX="708.0" layoutY="453.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="218.0" style="-fx-background-color: pink; -fx-text-fill: Blue; -fx-font-size: 20px;" text="Back" textAlignment="JUSTIFY">
+      <Button fx:id="bSBackButton" layoutX="708.0" layoutY="453.0" mnemonicParsing="false" onAction="#bSBackButtonOnAction" prefHeight="53.0" prefWidth="218.0" style="-fx-background-color: pink; -fx-text-fill: Blue; -fx-font-size: 20px;" text="Back" textAlignment="JUSTIFY">
          <effect>
             <DropShadow />
          </effect>
