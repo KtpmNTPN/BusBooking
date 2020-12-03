@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane fx:id="anchorpane" prefHeight="644.0" prefWidth="940.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="HellooFX.CreateAccountController">
+   <children>
+      <AnchorPane layoutX="102.0" layoutY="138.0">
+         <children>
+            <ImageView fx:id="tabPane" fitHeight="368.0" fitWidth="407.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Images/UTB8VHyqoL2JXKJkSanr7613lVXaw.png" />
+               </image>
+            </ImageView>
+         </children>
+         <effect>
+            <DropShadow />
+         </effect>
+      </AnchorPane>
+      <AnchorPane layoutX="470.0" layoutY="106.0" prefHeight="433.0" prefWidth="388.0" style="-fx-background-color: #FFF; -fx-background-radius: 10px;">
+         <effect>
+            <DropShadow />
+         </effect>
+         <children>
+            <TextField fx:id="fullnameTextField" layoutX="58.0" layoutY="74.0" prefHeight="26.0" prefWidth="272.0" promptText="Full name" />
+            <Label alignment="CENTER" layoutX="97.0" layoutY="2.0" prefHeight="25.0" prefWidth="204.0" style="-fx-font-size: 16px; -fx-text-fill: blue; -fx-font-size: 15px; -fx-background-radius: 8px; -fx-font-weight: 700;" text="CREATE ACCOUNT" />
+            <Label fx:id="lblLogin" alignment="CENTER" layoutX="92.0" layoutY="400.0" onMouseClicked="#openLoginScene" prefHeight="25.0" prefWidth="204.0" style="-fx-font-size: 16px; -fx-text-fill: blue; -fx-font-size: 15px; -fx-background-radius: 8px; -fx-font-weight: 700;" text="I have Account, Log Me in" />
+            <Button fx:id="crexitButton" layoutX="228.0" layoutY="352.0" mnemonicParsing="false" onAction="#crexitButtonAction" prefHeight="42.0" prefWidth="136.0" style="-fx-background-color: pink; -fx-text-fill: #FFF; -fx-font-size: 15px; -fx-font-weight: 700; -fx-backgorund-radius: 8px;" text="EXIT" textAlignment="JUSTIFY" />
+            <Label layoutX="60.0" layoutY="49.0" prefHeight="25.0" prefWidth="74.0" style="-fx-font-size: 16px; -fx-text-fill: blue; -fx-font-size: 15px; -fx-background-radius: 8px; -fx-font-weight: 700;" text="Full Name" />
+            <Label layoutX="60.0" layoutY="173.0" prefHeight="25.0" prefWidth="52.0" style="-fx-font-size: 16px; -fx-text-fill: blue; -fx-font-size: 15px; -fx-background-radius: 8px; -fx-font-weight: 700;" text="Phone" />
+            <TextField fx:id="usernameTextField" layoutX="58.0" layoutY="137.0" prefHeight="26.0" prefWidth="272.0" promptText="Username" />
+            <Label layoutX="60.0" layoutY="231.0" prefHeight="25.0" prefWidth="74.0" style="-fx-font-size: 16px; -fx-text-fill: blue; -fx-font-size: 15px; -fx-background-radius: 8px; -fx-font-weight: 700;" text="Password" />
+            <Label layoutX="60.0" layoutY="290.0" prefHeight="25.0" prefWidth="136.0" style="-fx-font-size: 16px; -fx-text-fill: blue; -fx-font-size: 15px; -fx-background-radius: 8px; -fx-font-weight: 700;" text="Confirm Password" />
+            <Label fx:id="confirmPasswordLabel" alignment="CENTER" layoutX="199.0" layoutY="290.0" prefHeight="25.0" prefWidth="187.0" style="-fx-font-size: 16px; -fx-text-fill: red; -fx-font-size: 12px; -fx-background-radius: 8px; -fx-font-weight: 700;" />
+            <Label fx:id="createMessageLabel" alignment="CENTER" layoutX="59.0" layoutY="27.0" prefHeight="25.0" prefWidth="299.0" style="-fx-font-size: 16px; -fx-text-fill: green; -fx-font-size: 12px; -fx-background-radius: 8px; -fx-font-weight: 700;" />
+            <Button fx:id="createMessageButton" layoutX="29.0" layoutY="352.0" mnemonicParsing="false" onAction="#createMessageButtonOnAction" prefHeight="42.0" prefWidth="136.0" style="-fx-background-color: pink; -fx-text-fill: #FFF; -fx-font-size: 15px; -fx-font-weight: 700; -fx-backgorund-radius: 8px;" text="CREATE" textAlignment="JUSTIFY" />
+            <Label layoutX="58.0" layoutY="112.0" prefHeight="25.0" prefWidth="74.0" style="-fx-font-size: 16px; -fx-text-fill: blue; -fx-font-size: 15px; -fx-background-radius: 8px; -fx-font-weight: 700;" text="Username" />
+            <TextField fx:id="phoneTextField" layoutX="58.0" layoutY="198.0" prefHeight="26.0" prefWidth="272.0" promptText="Phone" />
+            <PasswordField fx:id="setPasswordField" layoutX="58.0" layoutY="256.0" prefHeight="26.0" prefWidth="272.0" promptText="Password" />
+            <PasswordField fx:id="confirmPassword" layoutX="58.0" layoutY="315.0" prefHeight="26.0" prefWidth="272.0" promptText="Confirm Password" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

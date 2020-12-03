@@ -5,7 +5,6 @@
  */
 package HellooFX;
 
-
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -32,48 +31,46 @@ import javafx.stage.StageStyle;
  *
  * @author Hau Exoty
  */
-public class BusSeatController implements Initializable {
+public class RemoveSeatController implements Initializable {
 
     @FXML
     private AnchorPane anchorPane;
     @FXML
     private ImageView tabPane;
     @FXML
-    private Button bSBackButton;
-    @FXML
-    private ComboBox Box;
+    private ComboBox rsBox;
     ObservableList<BusNo> busNo = FXCollections.observableArrayList();
     @FXML
-    private Button bSAddButton;
+    private ComboBox rSBox;
     @FXML
-    private DatePicker date;
-    
-
+    private DatePicker rSdate;
+    @FXML
+    private Button rSRemoveButton;
+    @FXML
+    private Button rSBackButton;
     /**
      * Initializes the controller class.
      */
+    @Override
     public void initialize(URL url, ResourceBundle rb) {
         busNo.add(new BusNo(1, "cc"));
         busNo.add(new BusNo(2, "ccu"));
         busNo.add(new BusNo(3,"cco"));
-        Box.setItems(busNo);
-        
-    }
-
+        rSBox.setItems(busNo);
+    }    
     @FXML
-    private void bSBackButtonOnAction(ActionEvent event) {
-        Stage stage = (Stage) bSBackButton.getScene().getWindow();
+    private void rSBackButtonOnAction(ActionEvent event) {
+        Stage stage = (Stage) rSBackButton.getScene().getWindow();
         stage.close();
         adminBookingFrom();
-
+        
     }
-
-    public void adminBookingFrom() {
+    public void adminBookingFrom(){
         try {
             Parent root = FXMLLoader.load(getClass().getResource("AdminBooking.fxml"));
             Stage adbookingStage = new Stage();
             adbookingStage.initStyle(StageStyle.UNDECORATED);
-            adbookingStage.setScene(new Scene(root, 940, 644));
+            adbookingStage.setScene(new Scene(root, 940 , 644));
             adbookingStage.show();
         } catch (Exception e) {
             e.printStackTrace();
@@ -82,19 +79,19 @@ public class BusSeatController implements Initializable {
     }
 
     @FXML
-    private void bSAddButtonOnAction(ActionEvent event) {
-        String busno = Box.getSelectionModel().getSelectedItem().toString(); 
+    private void rSRemoveButtonOnAction(ActionEvent event) {
+        String busno = rSBox.getSelectionModel().getSelectedItem().toString(); 
         DatabaseConnection connectNow = new DatabaseConnection();
         Connection connectDB = connectNow.getConnection();
         for (int i = 1; i <= 45; i++) {
             try {
                 int seats = i;
-                String status = "unbooked";
-                PreparedStatement pst = connectDB.prepareStatement("insert into busseat(busno,seats,date,status)values(?,?,?,?)");
+                
+                PreparedStatement pst = connectDB.prepareStatement("delete from busseat where busno = ? and date = ?");
                 pst.setString(1, busno);
-                pst.setInt(2, seats);
-                pst.setString(3, ((TextField) date.getEditor()).getText());
-                pst.setString(4, status);
+                
+                pst.setString(2, ((TextField) rSdate.getEditor()).getText());
+                
                 
                 pst.executeUpdate();
 
@@ -105,7 +102,6 @@ public class BusSeatController implements Initializable {
         }
 
     }
-
     private class BusNo {
 
         private int id;
@@ -139,5 +135,5 @@ public class BusSeatController implements Initializable {
         }
 
     }
-
+        
 }

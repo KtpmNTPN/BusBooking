@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane fx:id="anchorPane" prefHeight="644.0" prefWidth="940.0" style="-fx-background-color: pink;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="HellooFX.RemoveSeatController">
+   <children>
+      <AnchorPane layoutX="102.0" layoutY="138.0">
+         <children>
+            <ImageView fx:id="tabPane" fitHeight="368.0" fitWidth="407.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Images/UTB8VHyqoL2JXKJkSanr7613lVXaw.png" />
+               </image>
+            </ImageView>
+         </children>
+         <effect>
+            <DropShadow />
+         </effect>
+      </AnchorPane>
+      <Label alignment="CENTER" layoutX="293.0" layoutY="48.0" prefHeight="45.0" prefWidth="355.0" style="-fx-text-fill: Blue; -fx-background-color: pink; -fx-font-size: 30px;" text="Bus Seat" textAlignment="JUSTIFY">
+         <effect>
+            <DropShadow />
+         </effect>
+      </Label>
+      <Label alignment="CENTER" layoutX="471.0" layoutY="334.0" prefHeight="45.0" prefWidth="144.0" style="-fx-text-fill: Blue; -fx-background-color: pink; -fx-font-size: 30px;" text="Date" textAlignment="JUSTIFY">
+         <effect>
+            <DropShadow />
+         </effect>
+      </Label>
+      <Label alignment="CENTER" layoutX="471.0" layoutY="222.0" prefHeight="45.0" prefWidth="144.0" style="-fx-text-fill: Blue; -fx-background-color: pink; -fx-font-size: 30px;" text="Bus No" textAlignment="JUSTIFY">
+         <effect>
+            <DropShadow />
+         </effect>
+      </Label>
+      <ComboBox fx:id="rSBox" editable="true" layoutX="648.0" layoutY="222.0" prefHeight="45.0" prefWidth="291.0" promptText="Bus No" />
+      <DatePicker fx:id="rSdate" layoutX="648.0" layoutY="334.0" prefHeight="45.0" prefWidth="291.0" />
+      <Button fx:id="rSRemoveButton" layoutX="471.0" layoutY="453.0" mnemonicParsing="false" onAction="#rSRemoveButtonOnAction" prefHeight="53.0" prefWidth="218.0" style="-fx-background-color: pink; -fx-text-fill: Blue; -fx-font-size: 20px;" text="Remove" textAlignment="JUSTIFY">
+         <effect>
+            <DropShadow />
+         </effect>
+      </Button>
+      <Button fx:id="rSBackButton" layoutX="708.0" layoutY="453.0" mnemonicParsing="false" onAction="#rSBackButtonOnAction" prefHeight="53.0" prefWidth="218.0" style="-fx-background-color: pink; -fx-text-fill: Blue; -fx-font-size: 20px;" text="Back" textAlignment="JUSTIFY">
+         <effect>
+            <DropShadow />
+         </effect>
+      </Button>
+   </children>
+</AnchorPane>
