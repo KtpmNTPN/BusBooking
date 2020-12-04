@@ -48,18 +48,18 @@ public class CheckSeatController implements Initializable {
     private Button bSBackButton;
     @FXML
     private Button cBackButton;
+    private ResultSet rs = null;
+    private TableView<Table> tbView;
     @FXML
-    private TableView tbView;
+    private TableColumn<Table,String> busno;
     @FXML
-    private TableColumn id;
+    private TableColumn<Table,Integer> seats;
     @FXML
-    private TableColumn busno;
+    private TableColumn<Table,String> date;
     @FXML
-    private TableColumn seats;
+    private TableColumn<Table,String> status;
     @FXML
-    private TableColumn date;
-    @FXML
-    private TableColumn status;
+    private TableColumn<Table,Integer> id;
 
     /**
      * Initializes the controller class.
@@ -70,24 +70,32 @@ public class CheckSeatController implements Initializable {
         busNo.add(new BusNo(2, "ccu"));
         busNo.add(new BusNo(3,"cco"));
         Box.setItems(busNo);
+        id.setCellValueFactory(new PropertyValueFactory<>("id"));
+        busno.setCellValueFactory(new PropertyValueFactory<>("busno"));
+        seats.setCellValueFactory(new PropertyValueFactory<>("seats"));
+        date.setCellValueFactory(new PropertyValueFactory<>("date"));
+        status.setCellValueFactory(new PropertyValueFactory<>("status"));
+        
     }    
 
     @FXML
-    private void cCheckButtonOnAction(ActionEvent event) {
-        String busno = Box.getSelectionModel().getSelectedItem().toString(); 
+    private void cCheckButtonOnAction(ActionEvent event) { 
+        String busno = Box.getSelectionModel().getSelectedItem().toString();
         DatabaseConnection connectNow = new DatabaseConnection();
         Connection connectDB = connectNow.getConnection();
             try {
-                
-
+                PreparedStatement pst = connectDB.prepareStatement("select busseat.id, busseat.busno,busseat.seats,busseat.date,busseat.status from busseat where busseat.busno = ?");
+                pst.setString(1, busno);
+                rs = pst.executeQuery();
+                while(rs.next())
+                {
+                    table.add(new Table(rs.getInt(1),rs.getString(2),rs.getInt(3),rs.getString(4), rs.getString(5)));
+                }
             } catch (Exception e) {
                 e.printStackTrace();
                 e.getCause();
             }
-        
-        
-        
-        
+        tbView.setItems(table);
     }
     public void adminBookingFrom() {
         try {

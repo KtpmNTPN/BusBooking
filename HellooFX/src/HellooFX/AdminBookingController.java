@@ -36,6 +36,8 @@ public class AdminBookingController implements Initializable {
     private Button adBExitButton;
     @FXML
     private Button adbRemoveSeatButton;
+    @FXML
+    private Button adbCheckSeatButton;
 
     /**
      * Initializes the controller class.
@@ -81,11 +83,29 @@ public class AdminBookingController implements Initializable {
             e.getCause();
         }
     }
+    public void CheckSeatForm(){
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("CheckSeat.fxml"));
+            Stage busSeatStage = new Stage();
+            busSeatStage.initStyle(StageStyle.UNDECORATED);
+            busSeatStage.setScene(new Scene(root, 940 , 644));
+            busSeatStage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+            e.getCause();
+        }
+    }
 
     @FXML
     private void adbRemoveSeatButtonOnAction(ActionEvent event) {
-        Stage stage = (Stage) adbAddSeatButton.getScene().getWindow();
+        Stage stage = (Stage) adbRemoveSeatButton.getScene().getWindow();
         stage.close();
         removeSeatForm();
+    }
+    @FXML
+    private void adbCheckSeatButtonOnAction(ActionEvent event) {
+        Stage stage = (Stage) adbCheckSeatButton.getScene().getWindow();
+        stage.close();
+        CheckSeatForm();
     }
 }
