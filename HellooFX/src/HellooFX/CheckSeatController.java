@@ -49,6 +49,7 @@ public class CheckSeatController implements Initializable {
     @FXML
     private Button cBackButton;
     private ResultSet rs = null;
+    @FXML
     private TableView<Table> tbView;
     @FXML
     private TableColumn<Table,String> busno;
@@ -111,7 +112,7 @@ public class CheckSeatController implements Initializable {
     }
     @FXML
     private void cBackButtonOnAction(ActionEvent event) {
-        Stage stage = (Stage) bSBackButton.getScene().getWindow();
+        Stage stage = (Stage) cBackButton.getScene().getWindow();
         stage.close();
         adminBookingFrom();
     }
