@@ -37,8 +37,6 @@ public class RemoveSeatController implements Initializable {
     private AnchorPane anchorPane;
     @FXML
     private ImageView tabPane;
-    @FXML
-    private ComboBox rsBox;
     ObservableList<BusNo> busNo = FXCollections.observableArrayList();
     @FXML
     private ComboBox rSBox;
@@ -48,15 +46,24 @@ public class RemoveSeatController implements Initializable {
     private Button rSRemoveButton;
     @FXML
     private Button rSBackButton;
+    @FXML
+    private ComboBox rSBoxTime;
+    ObservableList<BusTime> busTime = FXCollections.observableArrayList();
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        busNo.add(new BusNo(1, "cc"));
-        busNo.add(new BusNo(2, "ccu"));
-        busNo.add(new BusNo(3,"cco"));
+        busNo.add(new BusNo(1, "Sài Gòn -> Nha Trang"));
+        busNo.add(new BusNo(2, "Sài Gòn -> Đà Lạt"));
+        busNo.add(new BusNo(3,"Nha Trang -> Sài Gòn"));
+        busNo.add(new BusNo(3,"Nha Trang -> Đà Lạt"));
+        busTime.add(new BusTime(1, "10:00"));
+        busTime.add(new BusTime(2, "14:00"));
+        busTime.add(new BusTime(3,"20:00"));
+        busTime.add(new BusTime(3,"1:00"));
         rSBox.setItems(busNo);
+        rSBoxTime.setItems(busTime);
     }    
     @FXML
     private void rSBackButtonOnAction(ActionEvent event) {
@@ -81,16 +88,18 @@ public class RemoveSeatController implements Initializable {
     @FXML
     private void rSRemoveButtonOnAction(ActionEvent event) {
         String busno = rSBox.getSelectionModel().getSelectedItem().toString(); 
+        String bustime = rSBoxTime.getSelectionModel().getSelectedItem().toString();
         DatabaseConnection connectNow = new DatabaseConnection();
         Connection connectDB = connectNow.getConnection();
         for (int i = 1; i <= 45; i++) {
             try {
                 int seats = i;
                 
-                PreparedStatement pst = connectDB.prepareStatement("delete from busseat where busno = ? and date = ?");
+                PreparedStatement pst = connectDB.prepareStatement("delete from busseat where busno = ? and date = ? and time = ?");
                 pst.setString(1, busno);
                 
                 pst.setString(2, ((TextField) rSdate.getEditor()).getText());
+                pst.setString(3, bustime);
                 
                 
                 pst.executeUpdate();
@@ -108,6 +117,39 @@ public class RemoveSeatController implements Initializable {
         private String name;
 
         public BusNo(int id, String name) {
+            super();
+            this.id = id;
+            this.name = name;
+        }
+
+        public int getId() {
+            return id;
+        }
+
+        public void setId(int id) {
+            this.id = id;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        @Override
+        public String toString() {
+            return this.getName();
+        }
+
+    }
+    private class BusTime {
+
+        private int id;
+        private String name;
+
+        public BusTime(int id, String name) {
             super();
             this.id = id;
             this.name = name;

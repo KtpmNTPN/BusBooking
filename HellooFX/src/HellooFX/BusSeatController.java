@@ -47,16 +47,25 @@ public class BusSeatController implements Initializable {
     private Button bSAddButton;
     @FXML
     private DatePicker date;
+    @FXML
+    private ComboBox BoxTime;
+    ObservableList<BusTime> busTime = FXCollections.observableArrayList();
     
 
     /**
      * Initializes the controller class.
      */
     public void initialize(URL url, ResourceBundle rb) {
-        busNo.add(new BusNo(1, "cc"));
-        busNo.add(new BusNo(2, "ccu"));
-        busNo.add(new BusNo(3,"cco"));
+        busNo.add(new BusNo(1, "Sài Gòn -> Nha Trang"));
+        busNo.add(new BusNo(2, "Sài Gòn -> Đà Lạt"));
+        busNo.add(new BusNo(3,"Nha Trang -> Sài Gòn"));
+        busNo.add(new BusNo(3,"Nha Trang -> Đà Lạt"));
+        busTime.add(new BusTime(1, "10:00"));
+        busTime.add(new BusTime(2, "14:00"));
+        busTime.add(new BusTime(3,"20:00"));
+        busTime.add(new BusTime(3,"1:00"));
         Box.setItems(busNo);
+        BoxTime.setItems(busTime);
         
     }
 
@@ -83,18 +92,20 @@ public class BusSeatController implements Initializable {
 
     @FXML
     private void bSAddButtonOnAction(ActionEvent event) {
-        String busno = Box.getSelectionModel().getSelectedItem().toString(); 
+        String busno = Box.getSelectionModel().getSelectedItem().toString();
+        String bustime = BoxTime.getSelectionModel().getSelectedItem().toString();
         DatabaseConnection connectNow = new DatabaseConnection();
         Connection connectDB = connectNow.getConnection();
         for (int i = 1; i <= 45; i++) {
             try {
                 int seats = i;
                 String status = "unbooked";
-                PreparedStatement pst = connectDB.prepareStatement("insert into busseat(busno,seats,date,status)values(?,?,?,?)");
+                PreparedStatement pst = connectDB.prepareStatement("insert into busseat(busno,seats,date,time,status)values(?,?,?,?,?)");
                 pst.setString(1, busno);
                 pst.setInt(2, seats);
                 pst.setString(3, ((TextField) date.getEditor()).getText());
-                pst.setString(4, status);
+                pst.setString(4, bustime);
+                pst.setString(5, status);
                 
                 pst.executeUpdate();
 
@@ -112,6 +123,39 @@ public class BusSeatController implements Initializable {
         private String name;
 
         public BusNo(int id, String name) {
+            super();
+            this.id = id;
+            this.name = name;
+        }
+
+        public int getId() {
+            return id;
+        }
+
+        public void setId(int id) {
+            this.id = id;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        @Override
+        public String toString() {
+            return this.getName();
+        }
+
+    }
+    private class BusTime {
+
+        private int id;
+        private String name;
+
+        public BusTime(int id, String name) {
             super();
             this.id = id;
             this.name = name;

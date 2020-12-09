@@ -28,7 +28,7 @@
             <DropShadow />
          </effect>
       </Label>
-      <Label alignment="CENTER" layoutX="471.0" layoutY="334.0" prefHeight="45.0" prefWidth="144.0" style="-fx-text-fill: Blue; -fx-background-color: pink; -fx-font-size: 30px;" text="Date" textAlignment="JUSTIFY">
+      <Label alignment="CENTER" layoutX="471.0" layoutY="300.0" prefHeight="45.0" prefWidth="144.0" style="-fx-text-fill: Blue; -fx-background-color: pink; -fx-font-size: 30px;" text="Date" textAlignment="JUSTIFY">
          <effect>
             <DropShadow />
          </effect>
@@ -39,7 +39,7 @@
          </effect>
       </Label>
       <ComboBox fx:id="rSBox" editable="true" layoutX="648.0" layoutY="222.0" prefHeight="45.0" prefWidth="291.0" promptText="Bus No" />
-      <DatePicker fx:id="rSdate" layoutX="648.0" layoutY="334.0" prefHeight="45.0" prefWidth="291.0" />
+      <DatePicker fx:id="rSdate" layoutX="648.0" layoutY="300.0" prefHeight="45.0" prefWidth="291.0" />
       <Button fx:id="rSRemoveButton" layoutX="471.0" layoutY="453.0" mnemonicParsing="false" onAction="#rSRemoveButtonOnAction" prefHeight="53.0" prefWidth="218.0" style="-fx-background-color: pink; -fx-text-fill: Blue; -fx-font-size: 20px;" text="Remove" textAlignment="JUSTIFY">
          <effect>
             <DropShadow />
@@ -50,5 +50,11 @@
             <DropShadow />
          </effect>
       </Button>
+      <Label alignment="CENTER" layoutX="471.0" layoutY="367.0" prefHeight="45.0" prefWidth="144.0" style="-fx-text-fill: Blue; -fx-background-color: pink; -fx-font-size: 30px;" text="Time" textAlignment="JUSTIFY">
+         <effect>
+            <DropShadow />
+         </effect>
+      </Label>
+      <ComboBox fx:id="rSBoxTime" editable="true" layoutX="648.0" layoutY="367.0" prefHeight="45.0" prefWidth="291.0" promptText="Time" />
    </children>
 </AnchorPane>

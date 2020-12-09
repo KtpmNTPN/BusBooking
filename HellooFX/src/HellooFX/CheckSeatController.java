@@ -43,9 +43,7 @@ public class CheckSeatController implements Initializable {
     private ComboBox Box;
     ObservableList<BusNo> busNo = FXCollections.observableArrayList();
     ObservableList<Table> table = FXCollections.observableArrayList();
-    @FXML
-    private Button cCheckButton;
-    private Button bSBackButton;
+    
     @FXML
     private Button cBackButton;
     private ResultSet rs = null;
@@ -61,36 +59,44 @@ public class CheckSeatController implements Initializable {
     private TableColumn<Table,String> status;
     @FXML
     private TableColumn<Table,Integer> id;
-
+    @FXML
+    private TableColumn<Table,String> time;
+    @FXML
+    private Button cCheckButton;
+    
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        busNo.add(new BusNo(1, "cc"));
-        busNo.add(new BusNo(2, "ccu"));
-        busNo.add(new BusNo(3,"cco"));
+        busNo.add(new BusNo(1, "Sài Gòn -> Nha Trang"));
+        busNo.add(new BusNo(2, "Sài Gòn -> Đà Lạt"));
+        busNo.add(new BusNo(3,"Nha Trang -> Sài Gòn"));
+        busNo.add(new BusNo(3,"Nha Trang -> Đà Lạt"));
         Box.setItems(busNo);
         id.setCellValueFactory(new PropertyValueFactory<>("id"));
         busno.setCellValueFactory(new PropertyValueFactory<>("busno"));
         seats.setCellValueFactory(new PropertyValueFactory<>("seats"));
         date.setCellValueFactory(new PropertyValueFactory<>("date"));
+        time.setCellValueFactory(new PropertyValueFactory<>("time"));
         status.setCellValueFactory(new PropertyValueFactory<>("status"));
+        
         
     }    
 
     @FXML
     private void cCheckButtonOnAction(ActionEvent event) { 
+        tbView.getItems().clear();
         String busno = Box.getSelectionModel().getSelectedItem().toString();
         DatabaseConnection connectNow = new DatabaseConnection();
         Connection connectDB = connectNow.getConnection();
             try {
-                PreparedStatement pst = connectDB.prepareStatement("select busseat.id, busseat.busno,busseat.seats,busseat.date,busseat.status from busseat where busseat.busno = ?");
+                PreparedStatement pst = connectDB.prepareStatement("select busseat.id, busseat.busno,busseat.seats,busseat.date,busseat.time, busseat.status from busseat where busseat.busno = ?");
                 pst.setString(1, busno);
                 rs = pst.executeQuery();
                 while(rs.next())
                 {
-                    table.add(new Table(rs.getInt(1),rs.getString(2),rs.getInt(3),rs.getString(4), rs.getString(5)));
+                    table.add(new Table(rs.getInt(1),rs.getString(2),rs.getInt(3),rs.getString(4), rs.getString(5),rs.getString(6)));
                 }
             } catch (Exception e) {
                 e.printStackTrace();
@@ -116,6 +122,8 @@ public class CheckSeatController implements Initializable {
         stage.close();
         adminBookingFrom();
     }
+
+   
 
         private class BusNo {
 

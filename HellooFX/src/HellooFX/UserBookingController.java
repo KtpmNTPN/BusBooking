@@ -34,6 +34,8 @@ public class UserBookingController implements Initializable {
     private Button uBExitButton;
     @FXML
     private Button ubBookingButton;
+    @FXML
+    private Button ubChangeTicketButton;
     
 
     /**
@@ -51,11 +53,43 @@ public class UserBookingController implements Initializable {
         
     }
 
+    public void busBookingForm(){
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("Booking.fxml"));
+            Stage busSeatStage = new Stage();
+            busSeatStage.initStyle(StageStyle.UNDECORATED);
+            busSeatStage.setScene(new Scene(root, 940 , 644));
+            busSeatStage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+            e.getCause();
+        }
+    }
     @FXML
     private void ubBookingButtonOnAction(ActionEvent event) {
         Stage stage = (Stage) ubBookingButton.getScene().getWindow();
         stage.close();
+        busBookingForm();
         
+    }
+    public void changeTicketForm(){
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("ChangeTicket.fxml"));
+            Stage busSeatStage = new Stage();
+            busSeatStage.initStyle(StageStyle.UNDECORATED);
+            busSeatStage.setScene(new Scene(root, 940 , 644));
+            busSeatStage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+            e.getCause();
+        }
+    }
+
+    @FXML
+    private void ubChangeTicketButtonOnAction(ActionEvent event) {
+        Stage stage = (Stage) ubBookingButton.getScene().getWindow();
+        stage.close();
+        changeTicketForm();
     }
     
     

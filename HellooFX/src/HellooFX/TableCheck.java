@@ -9,22 +9,27 @@ package HellooFX;
  *
  * @author Hau Exoty
  */
-public class Table {
+public class TableCheck {
     private int id;
     private String busno;
     private int seats;
+    private String customer;
+    private String mobile;
     private String date;
-    private String status;
     private String time;
+    private String price;
     
 
-    public Table(int id, String busno, int seats, String date, String time,String status) {
-        this.id = id;
-        this.busno = busno;
-        this.seats = seats;
-        this.date = date;
-        this.time = time;
-        this.status = status;
+    public TableCheck(int id, String busno, int seats, String customer,String mobile,String date, String time,String price) {
+        this.setId(id);
+        this.setBusno(busno);
+        this.setSeats(seats);
+        this.setCustomer(customer);
+        this.setMobile(mobile);
+        this.setDate(date);
+        this.setTime(time);
+        this.setPrice(price);
+        
         
     }
 
@@ -71,6 +76,34 @@ public class Table {
     }
 
     /**
+     * @return the customer
+     */
+    public String getCustomer() {
+        return customer;
+    }
+
+    /**
+     * @param customer the customer to set
+     */
+    public void setCustomer(String customer) {
+        this.customer = customer;
+    }
+
+    /**
+     * @return the mobile
+     */
+    public String getMobile() {
+        return mobile;
+    }
+
+    /**
+     * @param mobile the mobile to set
+     */
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
+    }
+
+    /**
      * @return the date
      */
     public String getDate() {
@@ -82,20 +115,6 @@ public class Table {
      */
     public void setDate(String date) {
         this.date = date;
-    }
-
-    /**
-     * @return the status
-     */
-    public String getStatus() {
-        return status;
-    }
-
-    /**
-     * @param status the status to set
-     */
-    public void setStatus(String status) {
-        this.status = status;
     }
 
     /**
@@ -113,8 +132,16 @@ public class Table {
     }
 
     /**
-     * @return the customer
+     * @return the price
      */
-    
-   
+    public String getPrice() {
+        return price;
+    }
+
+    /**
+     * @param price the price to set
+     */
+    public void setPrice(String price) {
+        this.price = price;
+    }
 }
