@@ -104,7 +104,7 @@ public class UserBookingController implements Initializable {
 
     @FXML
     private void ubChangeTicketButtonOnAction(ActionEvent event) {
-        Stage stage = (Stage) ubBookingButton.getScene().getWindow();
+        Stage stage = (Stage) ubChangeTicketButton.getScene().getWindow();
         stage.close();
         changeTicketForm();
     }
@@ -133,7 +133,7 @@ public class UserBookingController implements Initializable {
             Parent root = FXMLLoader.load(getClass().getResource("PrintTK.fxml"));
             Stage busSeatStage = new Stage();
             busSeatStage.initStyle(StageStyle.UNDECORATED);
-            busSeatStage.setScene(new Scene(root, 940 , 644));
+            busSeatStage.setScene(new Scene(root, 1161 , 682));
             busSeatStage.show();
         } catch (Exception e) {
             e.printStackTrace();
@@ -142,7 +142,7 @@ public class UserBookingController implements Initializable {
     }
     @FXML
     private void ubPrintTicketButtonOnAction(ActionEvent event) {
-        Stage stage = (Stage) ubRemoveTicketButton.getScene().getWindow();
+        Stage stage = (Stage) ubPrintTicketButton.getScene().getWindow();
         stage.close();
         printTicketForm();
     }

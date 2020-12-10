@@ -66,25 +66,30 @@ public class PrintTKController implements Initializable {
     @FXML
     private TableColumn<TableCheck, String> price;
     @FXML
-    private TextField txtCustomer;
-    @FXML
-    private TextField txtSeats;
-    @FXML
-    private TextField txtMobile;
-    @FXML
-    private TextField txtDate;
-    @FXML
-    private TextField txtTime;
-    @FXML
-    private TextField txtPrice;
-    @FXML
-    private TextField txtID;
-    @FXML
-    private TextField txtOldSeat;
-    @FXML
     private Button ptPrintButton;
     @FXML
     private TextField txtMobileCheck;
+    @FXML
+    private Label lblBusNo;
+    @FXML
+    private Label lblDT;
+    @FXML
+    private Label lblSeat;
+    @FXML
+    private Label lblName;
+    @FXML
+    private Label lblMobile;
+    @FXML
+    private Label lblPrice;
+    @FXML
+    private Label lblPD;
+    @FXML
+    private Label lblEmployee;
+    @FXML
+    private Label lblID;
+    @FXML
+    private AnchorPane boardingPass;
+    
     
 
     /**
@@ -154,14 +159,16 @@ public class PrintTKController implements Initializable {
         String cdate = dateFormat.format(datee);
         String ctime = timeFormat.format(datee);
         try {
-                txtID.setText(Integer.toString(table.getId()));
-                txtSeats.setText(Integer.toString(table.getSeat()));
-                txtCustomer.setText(table.getCustomer());
-                txtMobile.setText(table.getMobile());
-                txtDate.setText(table.getDate());
-                txtTime.setText(table.getTime());
-                txtPrice.setText(table.getPrice());
-                txtOldSeat.setText(Integer.toString(table.getSeat()));
+                lblID.setText(Integer.toString(table.getId()));
+                lblSeat.setText(Integer.toString(table.getSeat()));
+                lblName.setText(table.getCustomer());
+                lblMobile.setText(table.getMobile());
+                lblDT.setText(table.getTime() + "  " + table.getDate());
+                lblPrice.setText(table.getPrice());
+                lblPD.setText(ctime + "  " + cdate );
+                lblEmployee.setText("Thiên Phong");
+                lblBusNo.setText(table.getBusno());
+                
             } catch (Exception e) {
                 e.printStackTrace();
                 e.getCause();
@@ -171,13 +178,13 @@ public class PrintTKController implements Initializable {
         
     }
 
-    public void TicketFrom(){
+    public void ticketFrom(){
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("PrintTicket.fxml"));
-            Stage busSeatStage = new Stage();
-            busSeatStage.initStyle(StageStyle.UNDECORATED);
-            busSeatStage.setScene(new Scene(root, 452 , 400));
-            busSeatStage.show();
+            AnchorPane root = new AnchorPane(boardingPass);
+            Stage busSeatStage1 = new Stage();
+            busSeatStage1.initStyle(StageStyle.DECORATED);
+            busSeatStage1.setScene(new Scene(root, 600  , 580));
+            busSeatStage1.show();
         } catch (Exception e) {
             e.printStackTrace();
             e.getCause();
@@ -186,9 +193,10 @@ public class PrintTKController implements Initializable {
     @FXML
     private void ptPrintButtonOnAction(ActionEvent event) {
         Stage stage = (Stage) ptPrintButton.getScene().getWindow();
-        TicketFrom();
-        
+        stage.close();
+        ticketFrom();
     }
+
 
     
 }
