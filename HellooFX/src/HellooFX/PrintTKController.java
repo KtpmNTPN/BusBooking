@@ -37,15 +37,14 @@ import javafx.stage.StageStyle;
  *
  * @author Hau Exoty
  */
-public class ChangeTicketController implements Initializable {
+public class PrintTKController implements Initializable {
 
     @FXML
     private AnchorPane anchorPane;
     @FXML
-    private Button chCheckButton;
+    private Button ptCheckButton;
     @FXML
-    private Button chBackButton;
-    
+    private Button ptBackButton;
     ObservableList<TableCheck> table = FXCollections.observableArrayList();
     private ResultSet rs = null;
     @FXML
@@ -57,9 +56,15 @@ public class ChangeTicketController implements Initializable {
     @FXML
     private TableColumn<TableCheck, Integer> seat;
     @FXML
+    private TableColumn<TableCheck, String> customer;
+    @FXML
+    private TableColumn<TableCheck, String> mobile;
+    @FXML
     private TableColumn<TableCheck, String> date;
     @FXML
     private TableColumn<TableCheck, String> time;
+    @FXML
+    private TableColumn<TableCheck, String> price;
     @FXML
     private TextField txtCustomer;
     @FXML
@@ -75,17 +80,12 @@ public class ChangeTicketController implements Initializable {
     @FXML
     private TextField txtID;
     @FXML
-    private Button chChangeButton;
+    private TextField txtOldSeat;
+    @FXML
+    private Button ptPrintButton;
     @FXML
     private TextField txtMobileCheck;
-    @FXML
-    private TableColumn<TableCheck, String> customer;
-    @FXML
-    private TableColumn<TableCheck, String> price;
-    @FXML
-    private TableColumn<TableCheck, String> mobile;
-    @FXML
-    private TextField txtOldSeat;
+    
 
     /**
      * Initializes the controller class.
@@ -104,7 +104,7 @@ public class ChangeTicketController implements Initializable {
     }    
 
     @FXML
-    private void chCheckButtonOnAction(ActionEvent event) {
+    private void ptCheckButtonOnAction(ActionEvent event) {
         tbView.getItems().clear();
         String mobile = txtMobileCheck.getText();
         DatabaseConnection connectNow = new DatabaseConnection();
@@ -123,8 +123,8 @@ public class ChangeTicketController implements Initializable {
             }
         tbView.setItems(table);
     }
-
-    public void UserBookingFrom(){
+    
+     public void UserBookingFrom(){
         try {
             Parent root = FXMLLoader.load(getClass().getResource("UserBooking.fxml"));
             Stage busSeatStage = new Stage();
@@ -137,8 +137,8 @@ public class ChangeTicketController implements Initializable {
         }
     }
     @FXML
-    private void chBackButtonOnAction(ActionEvent event) {
-        Stage stage = (Stage) chBackButton.getScene().getWindow();
+    private void ptBackButtonOnAction(ActionEvent event) {
+        Stage stage = (Stage) ptBackButton.getScene().getWindow();
         stage.close();
         UserBookingFrom();
     }
@@ -153,65 +153,42 @@ public class ChangeTicketController implements Initializable {
         timeFormat = new SimpleDateFormat("HH:mm:ss");
         String cdate = dateFormat.format(datee);
         String ctime = timeFormat.format(datee);
-        
-        if(!cdate.equals(table.getDate()))
-        {
-            txtID.setText(Integer.toString(table.getId()));
-            txtSeats.setText(Integer.toString(table.getSeat()));
-            txtCustomer.setText(table.getCustomer());
-            txtMobile.setText(table.getMobile());
-            txtDate.setText(table.getDate());
-            txtTime.setText(table.getTime());
-            txtPrice.setText(table.getPrice());
-            txtOldSeat.setText(Integer.toString(table.getSeat()));
-        }
-        else
-        {
-            System.out.println("Time Change End");
-        }
-    }
-
-    @FXML
-    private void chChangeButtonOnAction(ActionEvent event) {
-        TableCheck table = tbView.getSelectionModel().getSelectedItem();
-        String id = txtID.getText();
-        String busno = table.getBusno();
-        String seat = txtSeats.getText();
-        String oldseat = txtOldSeat.getText();
-        String customer = txtCustomer.getText();
-        String mobile = txtMobile.getText();
-        String date = txtDate.getText();
-        String time = txtTime.getText();
-        String price = txtPrice.getText();
-        String status = "booked";
-        String status1 = "unbooked";
-        DatabaseConnection connectNow = new DatabaseConnection();
-        Connection connectDB = connectNow.getConnection();
-            try {
-                PreparedStatement pst2 = connectDB.prepareStatement("update busseat set status = ? where seats = ? ");
-                pst2.setString(1, status1);
-                pst2.setString(2, oldseat);
-                pst2.executeUpdate();
-                PreparedStatement pst = connectDB.prepareStatement("update busbooking set seat = ?, customer = ?, mobile = ?, date = ?, time = ?, price = ? where id = ?");
-                pst.setString(1, seat);
-                pst.setString(2, customer);
-                pst.setString(3, mobile);
-                pst.setString(4, date);
-                pst.setString(5, time);
-                pst.setString(6, price);
-                pst.setInt(7, Integer.valueOf(id));
-                pst.executeUpdate();
-                PreparedStatement pst1 = connectDB.prepareStatement("update busseat set status = ? where seats = ? ");
-                pst1.setString(1, status);
-                pst1.setString(2, seat);
-                pst1.executeUpdate();
-                
-
+        try {
+                txtID.setText(Integer.toString(table.getId()));
+                txtSeats.setText(Integer.toString(table.getSeat()));
+                txtCustomer.setText(table.getCustomer());
+                txtMobile.setText(table.getMobile());
+                txtDate.setText(table.getDate());
+                txtTime.setText(table.getTime());
+                txtPrice.setText(table.getPrice());
+                txtOldSeat.setText(Integer.toString(table.getSeat()));
             } catch (Exception e) {
                 e.printStackTrace();
                 e.getCause();
             }
         
+            
+        
     }
+
+    public void TicketFrom(){
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("PrintTicket.fxml"));
+            Stage busSeatStage = new Stage();
+            busSeatStage.initStyle(StageStyle.UNDECORATED);
+            busSeatStage.setScene(new Scene(root, 452 , 400));
+            busSeatStage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+            e.getCause();
+        }
+    }
+    @FXML
+    private void ptPrintButtonOnAction(ActionEvent event) {
+        Stage stage = (Stage) ptPrintButton.getScene().getWindow();
+        TicketFrom();
+        
+    }
+
     
 }

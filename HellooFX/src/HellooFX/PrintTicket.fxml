@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="452.0" style="-fx-background-color: pink;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="HellooFX.PrintTicketController">
+   <children>
+      <Label alignment="CENTER" layoutX="147.0" layoutY="14.0" prefHeight="32.0" prefWidth="159.0" style="-fx-font-size: 24px;" text="Boarding Pass" textAlignment="JUSTIFY" />
+      <Label fx:id="lblBusNo" alignment="CENTER" layoutX="79.0" layoutY="49.0" prefHeight="32.0" prefWidth="198.0" style="-fx-font-size: 20px;" text="h" textAlignment="JUSTIFY" />
+      <Label alignment="CENTER" layoutX="-14.0" layoutY="49.0" prefHeight="32.0" prefWidth="127.0" style="-fx-font-size: 14px;" text="Bus no:" textAlignment="JUSTIFY" />
+      <Label alignment="CENTER" layoutX="-14.0" layoutY="91.0" prefHeight="32.0" prefWidth="127.0" style="-fx-font-size: 14px;" text="Departure Time:" textAlignment="JUSTIFY" />
+      <Label fx:id="lblDT" alignment="CENTER" layoutX="79.0" layoutY="91.0" prefHeight="32.0" prefWidth="198.0" style="-fx-font-size: 20px;" text="h" textAlignment="JUSTIFY" />
+      <Label alignment="CENTER" layoutX="-14.0" layoutY="135.0" prefHeight="32.0" prefWidth="127.0" style="-fx-font-size: 14px;" text="Seat:" textAlignment="JUSTIFY" />
+      <Label fx:id="lblSeat" alignment="CENTER" layoutX="79.0" layoutY="135.0" prefHeight="32.0" prefWidth="198.0" style="-fx-font-size: 20px;" text="h" textAlignment="JUSTIFY" />
+      <Label alignment="CENTER" layoutX="-14.0" layoutY="184.0" prefHeight="32.0" prefWidth="127.0" style="-fx-font-size: 14px;" text="Name:" textAlignment="JUSTIFY" />
+      <Label fx:id="lblName" alignment="CENTER" layoutX="79.0" layoutY="184.0" prefHeight="32.0" prefWidth="198.0" style="-fx-font-size: 20px;" text="h" textAlignment="JUSTIFY" />
+      <Label alignment="CENTER" layoutX="-14.0" layoutY="230.0" prefHeight="32.0" prefWidth="127.0" style="-fx-font-size: 14px;" text="Mobile" textAlignment="JUSTIFY" />
+      <Label alignment="CENTER" layoutX="-14.0" layoutY="272.0" prefHeight="32.0" prefWidth="127.0" style="-fx-font-size: 14px;" text="Price" textAlignment="JUSTIFY" />
+      <Label fx:id="lblMobile" alignment="CENTER" layoutX="79.0" layoutY="230.0" prefHeight="32.0" prefWidth="198.0" style="-fx-font-size: 20px;" text="h" textAlignment="JUSTIFY" />
+      <Label fx:id="lblPrice" alignment="CENTER" layoutX="79.0" layoutY="272.0" prefHeight="32.0" prefWidth="198.0" style="-fx-font-size: 20px;" text="h" textAlignment="JUSTIFY" />
+      <Label alignment="CENTER" layoutX="-14.0" layoutY="354.0" prefHeight="32.0" prefWidth="127.0" style="-fx-font-size: 14px;" text="Printed Date:" textAlignment="JUSTIFY" />
+      <Label fx:id="lblPD" alignment="CENTER" layoutX="79.0" layoutY="354.0" prefHeight="32.0" prefWidth="198.0" style="-fx-font-size: 20px;" text="h" textAlignment="JUSTIFY" />
+      <Label alignment="CENTER" layoutX="-14.0" layoutY="314.0" prefHeight="32.0" prefWidth="127.0" style="-fx-font-size: 14px;" text="Employee" textAlignment="JUSTIFY" />
+      <Label fx:id="lblEmployee" alignment="CENTER" layoutX="79.0" layoutY="314.0" prefHeight="32.0" prefWidth="198.0" style="-fx-font-size: 20px;" text="h" textAlignment="JUSTIFY" />
+      <Label alignment="CENTER" layoutX="336.0" layoutY="49.0" prefHeight="32.0" prefWidth="58.0" style="-fx-font-size: 14px;" text="ID:" textAlignment="JUSTIFY" />
+      <Label fx:id="lblID" alignment="CENTER" layoutX="381.0" layoutY="49.0" prefHeight="32.0" prefWidth="71.0" style="-fx-font-size: 20px;" text="h" textAlignment="JUSTIFY" />
+   </children>
+</AnchorPane>

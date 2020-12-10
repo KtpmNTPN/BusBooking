@@ -53,11 +53,24 @@ public class AdminBookingController implements Initializable {
         stage.close();
         busSeatForm();
     }
-
+    
+    public void loginFrom(){
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("Login.fxml"));
+            Stage busSeatStage = new Stage();
+            busSeatStage.initStyle(StageStyle.UNDECORATED);
+            busSeatStage.setScene(new Scene(root, 940 , 644));
+            busSeatStage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+            e.getCause();
+        }
+    }
     @FXML
     private void adBExitButtonOnAction(ActionEvent event) {
         Stage stage = (Stage) adBExitButton.getScene().getWindow();
         stage.close();
+        loginFrom();
     }
     public void busSeatForm(){
         try {

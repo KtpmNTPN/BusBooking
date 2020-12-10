@@ -12,7 +12,7 @@ package HellooFX;
 public class TableCheck {
     private int id;
     private String busno;
-    private int seats;
+    private int seat;
     private String customer;
     private String mobile;
     private String date;
@@ -20,15 +20,15 @@ public class TableCheck {
     private String price;
     
 
-    public TableCheck(int id, String busno, int seats, String customer,String mobile,String date, String time,String price) {
-        this.setId(id);
-        this.setBusno(busno);
-        this.setSeats(seats);
-        this.setCustomer(customer);
-        this.setMobile(mobile);
-        this.setDate(date);
-        this.setTime(time);
-        this.setPrice(price);
+    public TableCheck(int id, String busno, int seat, String customer,String mobile,String date, String time,String price) {
+        this.id = id;
+        this.busno = busno;
+        this.seat = seat;
+        this.customer = customer;
+        this.mobile = mobile;
+        this.date = date;
+        this.time = time;
+        this.price = price;
         
         
     }
@@ -64,15 +64,15 @@ public class TableCheck {
     /**
      * @return the seats
      */
-    public int getSeats() {
-        return seats;
+    public int getSeat() {
+        return seat;
     }
 
     /**
-     * @param seats the seats to set
+     * @param seat the seats to set
      */
-    public void setSeats(int seats) {
-        this.seats = seats;
+    public void setSeat(int seat) {
+        this.seat = seat;
     }
 
     /**

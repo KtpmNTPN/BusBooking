@@ -36,6 +36,10 @@ public class UserBookingController implements Initializable {
     private Button ubBookingButton;
     @FXML
     private Button ubChangeTicketButton;
+    @FXML
+    private Button ubRemoveTicketButton;
+    @FXML
+    private Button ubPrintTicketButton;
     
 
     /**
@@ -45,11 +49,24 @@ public class UserBookingController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
-
+    
+    public void loginFrom(){
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("Login.fxml"));
+            Stage busSeatStage = new Stage();
+            busSeatStage.initStyle(StageStyle.UNDECORATED);
+            busSeatStage.setScene(new Scene(root, 940 , 644));
+            busSeatStage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+            e.getCause();
+        }
+    }
     @FXML
     private void uBExitButtonOnAction(ActionEvent event) {
         Stage stage = (Stage) uBExitButton.getScene().getWindow();
         stage.close();
+        loginFrom();
         
     }
 
@@ -90,6 +107,44 @@ public class UserBookingController implements Initializable {
         Stage stage = (Stage) ubBookingButton.getScene().getWindow();
         stage.close();
         changeTicketForm();
+    }
+    
+    public void removeTicketForm(){
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("RemoveTicket.fxml"));
+            Stage busSeatStage = new Stage();
+            busSeatStage.initStyle(StageStyle.UNDECORATED);
+            busSeatStage.setScene(new Scene(root, 940 , 644));
+            busSeatStage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+            e.getCause();
+        }
+    }
+    @FXML
+    private void ubRemoveTicketButtonOnAction(ActionEvent event) {
+        Stage stage = (Stage) ubRemoveTicketButton.getScene().getWindow();
+        stage.close();
+        removeTicketForm();
+    }
+
+    public void printTicketForm(){
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("PrintTK.fxml"));
+            Stage busSeatStage = new Stage();
+            busSeatStage.initStyle(StageStyle.UNDECORATED);
+            busSeatStage.setScene(new Scene(root, 940 , 644));
+            busSeatStage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+            e.getCause();
+        }
+    }
+    @FXML
+    private void ubPrintTicketButtonOnAction(ActionEvent event) {
+        Stage stage = (Stage) ubRemoveTicketButton.getScene().getWindow();
+        stage.close();
+        printTicketForm();
     }
     
     

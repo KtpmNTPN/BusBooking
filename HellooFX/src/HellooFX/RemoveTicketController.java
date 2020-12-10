@@ -22,7 +22,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -37,15 +36,14 @@ import javafx.stage.StageStyle;
  *
  * @author Hau Exoty
  */
-public class ChangeTicketController implements Initializable {
+public class RemoveTicketController implements Initializable {
 
     @FXML
     private AnchorPane anchorPane;
     @FXML
-    private Button chCheckButton;
+    private Button rmCheckButton;
     @FXML
-    private Button chBackButton;
-    
+    private Button rmBackButton;
     ObservableList<TableCheck> table = FXCollections.observableArrayList();
     private ResultSet rs = null;
     @FXML
@@ -57,9 +55,15 @@ public class ChangeTicketController implements Initializable {
     @FXML
     private TableColumn<TableCheck, Integer> seat;
     @FXML
+    private TableColumn<TableCheck, String> customer;
+    @FXML
+    private TableColumn<TableCheck, String> mobile;
+    @FXML
     private TableColumn<TableCheck, String> date;
     @FXML
     private TableColumn<TableCheck, String> time;
+    @FXML
+    private TableColumn<TableCheck, String> price;
     @FXML
     private TextField txtCustomer;
     @FXML
@@ -75,17 +79,11 @@ public class ChangeTicketController implements Initializable {
     @FXML
     private TextField txtID;
     @FXML
-    private Button chChangeButton;
+    private TextField txtOldSeat;
+    @FXML
+    private Button rmChangeButton;
     @FXML
     private TextField txtMobileCheck;
-    @FXML
-    private TableColumn<TableCheck, String> customer;
-    @FXML
-    private TableColumn<TableCheck, String> price;
-    @FXML
-    private TableColumn<TableCheck, String> mobile;
-    @FXML
-    private TextField txtOldSeat;
 
     /**
      * Initializes the controller class.
@@ -104,7 +102,7 @@ public class ChangeTicketController implements Initializable {
     }    
 
     @FXML
-    private void chCheckButtonOnAction(ActionEvent event) {
+    private void rmCheckButtonOnAction(ActionEvent event) {
         tbView.getItems().clear();
         String mobile = txtMobileCheck.getText();
         DatabaseConnection connectNow = new DatabaseConnection();
@@ -137,8 +135,8 @@ public class ChangeTicketController implements Initializable {
         }
     }
     @FXML
-    private void chBackButtonOnAction(ActionEvent event) {
-        Stage stage = (Stage) chBackButton.getScene().getWindow();
+    private void rmBackButtonOnAction(ActionEvent event) {
+        Stage stage = (Stage) rmBackButton.getScene().getWindow();
         stage.close();
         UserBookingFrom();
     }
@@ -167,12 +165,12 @@ public class ChangeTicketController implements Initializable {
         }
         else
         {
-            System.out.println("Time Change End");
+            System.out.println("Time Remove End");
         }
     }
 
     @FXML
-    private void chChangeButtonOnAction(ActionEvent event) {
+    private void rmChangeButtonOnAction(ActionEvent event) {
         TableCheck table = tbView.getSelectionModel().getSelectedItem();
         String id = txtID.getText();
         String busno = table.getBusno();
@@ -188,23 +186,15 @@ public class ChangeTicketController implements Initializable {
         DatabaseConnection connectNow = new DatabaseConnection();
         Connection connectDB = connectNow.getConnection();
             try {
+                
+                PreparedStatement pst = connectDB.prepareStatement("delete from busbooking where id = ?");
+                
+                pst.setInt(1, Integer.valueOf(id));
+                pst.executeUpdate();
                 PreparedStatement pst2 = connectDB.prepareStatement("update busseat set status = ? where seats = ? ");
                 pst2.setString(1, status1);
                 pst2.setString(2, oldseat);
                 pst2.executeUpdate();
-                PreparedStatement pst = connectDB.prepareStatement("update busbooking set seat = ?, customer = ?, mobile = ?, date = ?, time = ?, price = ? where id = ?");
-                pst.setString(1, seat);
-                pst.setString(2, customer);
-                pst.setString(3, mobile);
-                pst.setString(4, date);
-                pst.setString(5, time);
-                pst.setString(6, price);
-                pst.setInt(7, Integer.valueOf(id));
-                pst.executeUpdate();
-                PreparedStatement pst1 = connectDB.prepareStatement("update busseat set status = ? where seats = ? ");
-                pst1.setString(1, status);
-                pst1.setString(2, seat);
-                pst1.executeUpdate();
                 
 
             } catch (Exception e) {

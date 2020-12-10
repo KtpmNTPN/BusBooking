@@ -9,6 +9,8 @@ import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -30,6 +32,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javax.swing.JOptionPane;
+import java.util.Date;
 
 /**
  * FXML Controller class
@@ -86,6 +89,7 @@ public class BookingController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        
         busNo.add(new BusNo(1, "Sài Gòn -> Nha Trang"));
         busNo.add(new BusNo(2, "Sài Gòn -> Đà Lạt"));
         busNo.add(new BusNo(3,"Nha Trang -> Sài Gòn"));
@@ -184,7 +188,15 @@ public class BookingController implements Initializable {
     private void tableMouseClicked(MouseEvent event) {
         Table table = tbView.getSelectionModel().getSelectedItem();
         String status = table.getStatus();
-        if(!status.equals("Booked"))
+        Date datee = new Date();
+        DateFormat dateFormat = null;
+        DateFormat timeFormat = null;
+        dateFormat = new SimpleDateFormat("MM/dd/yyyy");
+        timeFormat = new SimpleDateFormat("HH:mm:ss");
+        String cdate = dateFormat.format(datee);
+        String ctime = timeFormat.format(datee);
+        
+        if(!status.equals("booked") && !cdate.equals(table.getDate()))
         {
             txtID.setText(Integer.toString(table.getId()));
             txtSeats.setText(Integer.toString(table.getSeats()));
