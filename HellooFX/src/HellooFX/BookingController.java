@@ -10,6 +10,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -106,6 +107,7 @@ public class BookingController implements Initializable {
     @FXML
     private void bCheckButtonOnAction(ActionEvent event) {
         tbView.getItems().clear();
+        
         String busno = Box.getSelectionModel().getSelectedItem().toString();
         DatabaseConnection connectNow = new DatabaseConnection();
         Connection connectDB = connectNow.getConnection();
@@ -185,18 +187,24 @@ public class BookingController implements Initializable {
     }
 
     @FXML
-    private void tableMouseClicked(MouseEvent event) {
+    private void tableMouseClicked(MouseEvent event) throws ParseException {
         Table table = tbView.getSelectionModel().getSelectedItem();
         String status = table.getStatus();
-        Date datee = new Date();
+        Date now = new Date();
         DateFormat dateFormat = null;
         DateFormat timeFormat = null;
         dateFormat = new SimpleDateFormat("MM/dd/yyyy");
-        timeFormat = new SimpleDateFormat("HH:mm:ss");
-        String cdate = dateFormat.format(datee);
-        String ctime = timeFormat.format(datee);
+        timeFormat = new SimpleDateFormat("HH:mm");
+        String cdate = dateFormat.format(now);
+        String ctime = timeFormat.format(now);
+        String time2 = table.getTime();
+        DateFormat format = new SimpleDateFormat("HH:mm");
+        Date date1 = format.parse(ctime);
+        Date date2 = format.parse(time2);
+        long difference = date2.getTime() - date1.getTime();
+        long expireTime = 1*60*60*1000;
         
-        if(!status.equals("booked") && !cdate.equals(table.getDate()))
+        if(!status.equals("booked") && !cdate.equals(table.getDate()) && (difference>expireTime) == true)
         {
             txtID.setText(Integer.toString(table.getId()));
             txtSeats.setText(Integer.toString(table.getSeats()));

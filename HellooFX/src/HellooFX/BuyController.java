@@ -23,7 +23,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -38,29 +38,33 @@ import javafx.stage.StageStyle;
  *
  * @author Hau Exoty
  */
-public class ChangeTicketController implements Initializable {
+public class BuyController implements Initializable {
 
     @FXML
     private AnchorPane anchorPane;
     @FXML
-    private Button chCheckButton;
+    private ComboBox Box;
+    ObservableList<BusNo> busNo = FXCollections.observableArrayList();
+    ObservableList<Table> table = FXCollections.observableArrayList();
     @FXML
-    private Button chBackButton;
-    
-    ObservableList<TableCheck> table = FXCollections.observableArrayList();
+    private Button buCheckButton;
     private ResultSet rs = null;
     @FXML
-    private TableView<TableCheck> tbView;
+    private Button buBackButton;
     @FXML
-    private TableColumn<TableCheck, Integer> id;
+    private TableView<Table> tbView;
     @FXML
-    private TableColumn<TableCheck, String> busno;
+    private TableColumn<Table, Integer> id;
     @FXML
-    private TableColumn<TableCheck, Integer> seat;
+    private TableColumn<Table, String> busno;
     @FXML
-    private TableColumn<TableCheck, String> date;
+    private TableColumn<Table, Integer> seats;
     @FXML
-    private TableColumn<TableCheck, String> time;
+    private TableColumn<Table, String> date;
+    @FXML
+    private TableColumn<Table, String> time;
+    @FXML
+    private TableColumn<Table, String> status;
     @FXML
     private TextField txtCustomer;
     @FXML
@@ -76,17 +80,7 @@ public class ChangeTicketController implements Initializable {
     @FXML
     private TextField txtID;
     @FXML
-    private Button chChangeButton;
-    @FXML
-    private TextField txtMobileCheck;
-    @FXML
-    private TableColumn<TableCheck, String> customer;
-    @FXML
-    private TableColumn<TableCheck, String> price;
-    @FXML
-    private TableColumn<TableCheck, String> mobile;
-    @FXML
-    private TextField txtOldSeat;
+    private Button buBuyButton;
 
     /**
      * Initializes the controller class.
@@ -94,35 +88,41 @@ public class ChangeTicketController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        busNo.add(new BusNo(1, "Sài Gòn -> Nha Trang"));
+        busNo.add(new BusNo(2, "Sài Gòn -> Đà Lạt"));
+        busNo.add(new BusNo(3,"Nha Trang -> Sài Gòn"));
+        busNo.add(new BusNo(3,"Nha Trang -> Đà Lạt"));
+        Box.setItems(busNo);
         id.setCellValueFactory(new PropertyValueFactory<>("id"));
         busno.setCellValueFactory(new PropertyValueFactory<>("busno"));
-        seat.setCellValueFactory(new PropertyValueFactory<>("seat"));
+        seats.setCellValueFactory(new PropertyValueFactory<>("seats"));
         date.setCellValueFactory(new PropertyValueFactory<>("date"));
         time.setCellValueFactory(new PropertyValueFactory<>("time"));
-        customer.setCellValueFactory(new PropertyValueFactory<>("customer"));
-        price.setCellValueFactory(new PropertyValueFactory<>("price"));
-        mobile.setCellValueFactory(new PropertyValueFactory<>("mobile"));
+        status.setCellValueFactory(new PropertyValueFactory<>("status"));
+        
     }    
 
     @FXML
-    private void chCheckButtonOnAction(ActionEvent event) {
+    private void buCheckButtonOnAction(ActionEvent event) throws ParseException {
         tbView.getItems().clear();
-        String mobile = txtMobileCheck.getText();
+        String busno = Box.getSelectionModel().getSelectedItem().toString();
         DatabaseConnection connectNow = new DatabaseConnection();
         Connection connectDB = connectNow.getConnection();
             try {
-                PreparedStatement pst = connectDB.prepareStatement("select * from busbooking where busbooking.mobile = ? ");
-                pst.setString(1, mobile);
+                
+                PreparedStatement pst = connectDB.prepareStatement("select busseat.id, busseat.busno,busseat.seats,busseat.date,busseat.time, busseat.status from busseat where busseat.busno = ?");
+                pst.setString(1, busno);
                 rs = pst.executeQuery();
                 while(rs.next())
                 {
-                    table.add(new TableCheck(rs.getInt(1),rs.getString(2),rs.getInt(3),rs.getString(4), rs.getString(5),rs.getString(6),rs.getString(7),rs.getString(8)));
+                    table.add(new Table(rs.getInt(1),rs.getString(2),rs.getInt(3),rs.getString(4), rs.getString(5),rs.getString(6)));
                 }
             } catch (Exception e) {
                 e.printStackTrace();
                 e.getCause();
             }
         tbView.setItems(table);
+        
     }
 
     public void UserBookingFrom(){
@@ -137,80 +137,74 @@ public class ChangeTicketController implements Initializable {
             e.getCause();
         }
     }
+    
     @FXML
-    private void chBackButtonOnAction(ActionEvent event) {
-        Stage stage = (Stage) chBackButton.getScene().getWindow();
+    private void buBackButtonOnAction(ActionEvent event) {
+        Stage stage = (Stage) buBackButton.getScene().getWindow();
         stage.close();
         UserBookingFrom();
     }
 
     @FXML
     private void tableMouseClicked(MouseEvent event) throws ParseException {
-        TableCheck table = tbView.getSelectionModel().getSelectedItem();
-        Date datee = new Date();
+        Table table = tbView.getSelectionModel().getSelectedItem();
+        Date now = new Date();
         DateFormat dateFormat = null;
         DateFormat timeFormat = null;
         dateFormat = new SimpleDateFormat("MM/dd/yyyy");
-        timeFormat = new SimpleDateFormat("HH:mm:ss");
-        String cdate = dateFormat.format(datee);
-        String ctime = timeFormat.format(datee);
+        timeFormat = new SimpleDateFormat("HH:mm");
+        String cdate = dateFormat.format(now);
+        String ctime = timeFormat.format(now);
         String time2 = table.getTime();
         DateFormat format = new SimpleDateFormat("HH:mm");
         Date date1 = format.parse(ctime);
         Date date2 = format.parse(time2);
         long difference = date2.getTime() - date1.getTime();
-        long expireTime = 1*60*60*1000;
+        long expireTime = 1*60*5*1000;
         
-        if(!cdate.equals(table.getDate()) && (difference > expireTime) == true)
+        if(!status.equals("booked") && !cdate.equals(table.getDate()) && (difference>expireTime) == true && !status.equals("revoked"))
         {
             txtID.setText(Integer.toString(table.getId()));
-            txtSeats.setText(Integer.toString(table.getSeat()));
-            txtCustomer.setText(table.getCustomer());
-            txtMobile.setText(table.getMobile());
+            txtSeats.setText(Integer.toString(table.getSeats()));
             txtDate.setText(table.getDate());
             txtTime.setText(table.getTime());
-            txtPrice.setText(table.getPrice());
-            txtOldSeat.setText(Integer.toString(table.getSeat()));
         }
         else
         {
-            System.out.println("Time Change End");
+            System.out.println("Ticket Bought");
         }
     }
 
     @FXML
-    private void chChangeButtonOnAction(ActionEvent event) {
-        TableCheck table = tbView.getSelectionModel().getSelectedItem();
+    private void buBuyButtonOnAction(ActionEvent event) {
+        Table table = tbView.getSelectionModel().getSelectedItem();
         String id = txtID.getText();
         String busno = table.getBusno();
         String seat = txtSeats.getText();
-        String oldseat = txtOldSeat.getText();
         String customer = txtCustomer.getText();
         String mobile = txtMobile.getText();
         String date = txtDate.getText();
         String time = txtTime.getText();
         String price = txtPrice.getText();
-        String status = "booked";
-        String status1 = "unbooked";
+        String status = "bought";
         DatabaseConnection connectNow = new DatabaseConnection();
         Connection connectDB = connectNow.getConnection();
             try {
-                PreparedStatement pst2 = connectDB.prepareStatement("update busseat set status = ? where seats = ? ");
-                pst2.setString(1, status1);
-                pst2.setString(2, oldseat);
-                pst2.executeUpdate();
-                PreparedStatement pst = connectDB.prepareStatement("update busbooking set seat = ?, customer = ?, mobile = ?, date = ?, time = ?, price = ? where id = ?");
-                pst.setString(1, seat);
-                pst.setString(2, customer);
-                pst.setString(3, mobile);
-                pst.setString(4, date);
-                pst.setString(5, time);
-                pst.setString(6, price);
-                pst.setInt(7, Integer.valueOf(id));
+                
+                PreparedStatement pst = connectDB.prepareStatement("insert into busbooking(id,busno,seat,customer,mobile,date,time,price)values(?,?,?,?,?,?,?,?)");
+                pst.setString(1, id);
+                pst.setString(2, busno);
+                pst.setString(3, seat);
+                pst.setString(4, customer);
+                pst.setString(5, mobile);
+                pst.setString(6, date);
+                pst.setString(7, time);
+                pst.setString(8, price);
                 pst.executeUpdate();
-                PreparedStatement pst1 = connectDB.prepareStatement("update busseat set status = ? where seats = ? ");
+                PreparedStatement pst1 = connectDB.prepareStatement("update busseat set status = ? where busseat.seats = ? ");
                 pst1.setString(1, status);
                 pst1.setString(2, seat);
+                
                 pst1.executeUpdate();
                 
 
@@ -221,4 +215,37 @@ public class ChangeTicketController implements Initializable {
         
     }
     
+    private class BusNo {
+
+        private int id;
+        private String name;
+
+        public BusNo(int id, String name) {
+            super();
+            this.id = id;
+            this.name = name;
+        }
+
+        public int getId() {
+            return id;
+        }
+
+        public void setId(int id) {
+            this.id = id;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        @Override
+        public String toString() {
+            return this.getName();
+        }
+
+    }
 }

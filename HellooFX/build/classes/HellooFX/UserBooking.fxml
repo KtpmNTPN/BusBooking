@@ -26,27 +26,32 @@
             <DropShadow />
          </effect>
       </Label>
-      <Button fx:id="ubBookingButton" layoutX="602.0" layoutY="148.0" mnemonicParsing="false" onAction="#ubBookingButtonOnAction" prefHeight="53.0" prefWidth="218.0" style="-fx-background-color: pink; -fx-text-fill: Blue; -fx-font-size: 20px;" text="Booking" textAlignment="JUSTIFY">
+      <Button fx:id="ubBookingButton" layoutX="602.0" layoutY="205.0" mnemonicParsing="false" onAction="#ubBookingButtonOnAction" prefHeight="53.0" prefWidth="218.0" style="-fx-background-color: pink; -fx-text-fill: Blue; -fx-font-size: 20px;" text="Booking" textAlignment="JUSTIFY">
          <effect>
             <DropShadow />
          </effect>
       </Button>
-      <Button fx:id="uBExitButton" layoutX="602.0" layoutY="453.0" mnemonicParsing="false" onAction="#uBExitButtonOnAction" prefHeight="53.0" prefWidth="218.0" style="-fx-background-color: pink; -fx-text-fill: Blue; -fx-font-size: 20px;" text="Exit" textAlignment="JUSTIFY">
+      <Button fx:id="uBExitButton" layoutX="602.0" layoutY="480.0" mnemonicParsing="false" onAction="#uBExitButtonOnAction" prefHeight="53.0" prefWidth="218.0" style="-fx-background-color: pink; -fx-text-fill: Blue; -fx-font-size: 20px;" text="Exit" textAlignment="JUSTIFY">
          <effect>
             <DropShadow />
          </effect>
       </Button>
-      <Button fx:id="ubRemoveTicketButton" layoutX="602.0" layoutY="296.0" mnemonicParsing="false" onAction="#ubRemoveTicketButtonOnAction" prefHeight="53.0" prefWidth="218.0" style="-fx-background-color: pink; -fx-text-fill: Blue; -fx-font-size: 20px;" text="Remove Ticket" textAlignment="JUSTIFY">
+      <Button fx:id="ubRemoveTicketButton" layoutX="602.0" layoutY="337.0" mnemonicParsing="false" onAction="#ubRemoveTicketButtonOnAction" prefHeight="53.0" prefWidth="218.0" style="-fx-background-color: pink; -fx-text-fill: Blue; -fx-font-size: 20px;" text="Remove Ticket" textAlignment="JUSTIFY">
          <effect>
             <DropShadow />
          </effect>
       </Button>
-      <Button fx:id="ubPrintTicketButton" layoutX="602.0" layoutY="376.0" mnemonicParsing="false" onAction="#ubPrintTicketButtonOnAction" prefHeight="53.0" prefWidth="218.0" style="-fx-background-color: pink; -fx-text-fill: Blue; -fx-font-size: 20px;" text="Print Ticket" textAlignment="JUSTIFY">
+      <Button fx:id="ubPrintTicketButton" layoutX="602.0" layoutY="409.0" mnemonicParsing="false" onAction="#ubPrintTicketButtonOnAction" prefHeight="53.0" prefWidth="218.0" style="-fx-background-color: pink; -fx-text-fill: Blue; -fx-font-size: 20px;" text="Print Ticket" textAlignment="JUSTIFY">
          <effect>
             <DropShadow />
          </effect>
       </Button>
-      <Button fx:id="ubChangeTicketButton" layoutX="602.0" layoutY="222.0" mnemonicParsing="false" onAction="#ubChangeTicketButtonOnAction" prefHeight="53.0" prefWidth="218.0" style="-fx-background-color: pink; -fx-text-fill: Blue; -fx-font-size: 20px;" text="Change Ticket" textAlignment="JUSTIFY">
+      <Button fx:id="ubChangeTicketButton" layoutX="602.0" layoutY="269.0" mnemonicParsing="false" onAction="#ubChangeTicketButtonOnAction" prefHeight="53.0" prefWidth="218.0" style="-fx-background-color: pink; -fx-text-fill: Blue; -fx-font-size: 20px;" text="Change Ticket" textAlignment="JUSTIFY">
+         <effect>
+            <DropShadow />
+         </effect>
+      </Button>
+      <Button fx:id="ubBuyButton" layoutX="602.0" layoutY="138.0" mnemonicParsing="false" onAction="#ubBuyButtonOnAction" prefHeight="53.0" prefWidth="218.0" style="-fx-background-color: pink; -fx-text-fill: Blue; -fx-font-size: 20px;" text="Buy Ticket" textAlignment="JUSTIFY">
          <effect>
             <DropShadow />
          </effect>

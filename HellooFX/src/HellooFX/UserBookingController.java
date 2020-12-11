@@ -40,6 +40,8 @@ public class UserBookingController implements Initializable {
     private Button ubRemoveTicketButton;
     @FXML
     private Button ubPrintTicketButton;
+    @FXML
+    private Button ubBuyButton;
     
 
     /**
@@ -145,6 +147,25 @@ public class UserBookingController implements Initializable {
         Stage stage = (Stage) ubPrintTicketButton.getScene().getWindow();
         stage.close();
         printTicketForm();
+    }
+
+    public void buyTicketForm(){
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("Buy.fxml"));
+            Stage busSeatStage = new Stage();
+            busSeatStage.initStyle(StageStyle.UNDECORATED);
+            busSeatStage.setScene(new Scene(root, 940 , 644));
+            busSeatStage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+            e.getCause();
+        }
+    }
+    @FXML
+    private void ubBuyButtonOnAction(ActionEvent event) {
+        Stage stage = (Stage) ubPrintTicketButton.getScene().getWindow();
+        stage.close();
+        buyTicketForm();
     }
     
     

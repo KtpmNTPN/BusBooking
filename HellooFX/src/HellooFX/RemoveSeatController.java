@@ -59,8 +59,8 @@ public class RemoveSeatController implements Initializable {
         busNo.add(new BusNo(3,"Nha Trang -> Sài Gòn"));
         busNo.add(new BusNo(3,"Nha Trang -> Đà Lạt"));
         busTime.add(new BusTime(1, "10:00"));
-        busTime.add(new BusTime(2, "14:00"));
-        busTime.add(new BusTime(3,"20:00"));
+        busTime.add(new BusTime(2, "13:00"));
+        busTime.add(new BusTime(3,"14:00"));
         busTime.add(new BusTime(3,"1:00"));
         rSBox.setItems(busNo);
         rSBoxTime.setItems(busTime);
