@@ -133,7 +133,7 @@ public class BookingController implements Initializable {
                     Date date1 = format.parse(ctime);
                     Date date2 = format.parse(time);
                     long difference = date2.getTime() - date1.getTime();
-                    if((difference < expireTime) == true){
+                    if((difference < expireTime) == true && cdate.equals(rs.getString(4))){
                     for (int i = 1; i <= 45; i++) {
                         try {
                             int seats = i;
@@ -149,7 +149,10 @@ public class BookingController implements Initializable {
                             }
                     }
                     table.add(new Table(rs.getInt(1),rs.getString(2),rs.getInt(3),rs.getString(4), rs.getString(5),rs.getString(6)));
-                }
+                    tbView.setItems(table);
+                    
+                }else
+                    table.add(new Table(rs.getInt(1),rs.getString(2),rs.getInt(3),rs.getString(4), rs.getString(5),rs.getString(6)));        
                 }
             } catch (Exception e) {
                 e.printStackTrace();
