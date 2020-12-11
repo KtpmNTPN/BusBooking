@@ -107,7 +107,14 @@ public class BookingController implements Initializable {
     @FXML
     private void bCheckButtonOnAction(ActionEvent event) {
         tbView.getItems().clear();
-        
+        Date now = new Date();
+        DateFormat dateFormat = null;
+        DateFormat timeFormat = null;
+        dateFormat = new SimpleDateFormat("MM/dd/yyyy");
+        timeFormat = new SimpleDateFormat("HH:mm");
+        String cdate = dateFormat.format(now);
+        String ctime = timeFormat.format(now);
+        long expireTime = 1*60*5*1000;
         String busno = Box.getSelectionModel().getSelectedItem().toString();
         DatabaseConnection connectNow = new DatabaseConnection();
         Connection connectDB = connectNow.getConnection();
@@ -115,14 +122,40 @@ public class BookingController implements Initializable {
                 PreparedStatement pst = connectDB.prepareStatement("select busseat.id, busseat.busno,busseat.seats,busseat.date,busseat.time, busseat.status from busseat where busseat.busno = ?");
                 pst.setString(1, busno);
                 rs = pst.executeQuery();
+                
+                
+                String status = "revoked";
+                
                 while(rs.next())
                 {
+                    String  time = rs.getString(5);
+                    DateFormat format = new SimpleDateFormat("HH:mm");
+                    Date date1 = format.parse(ctime);
+                    Date date2 = format.parse(time);
+                    long difference = date2.getTime() - date1.getTime();
+                    if((difference < expireTime) == true){
+                    for (int i = 1; i <= 45; i++) {
+                        try {
+                            int seats = i;
+                            PreparedStatement pst1 = connectDB.prepareStatement("update busseat set status = ? where busseat.seats = ? ");
+                            pst1.setString(1, status);
+                            pst1.setInt(2, seats);
+                
+                            pst1.executeUpdate();
+
+                        } catch (Exception e) {
+                                e.printStackTrace();
+                                e.getCause();
+                            }
+                    }
                     table.add(new Table(rs.getInt(1),rs.getString(2),rs.getInt(3),rs.getString(4), rs.getString(5),rs.getString(6)));
+                }
                 }
             } catch (Exception e) {
                 e.printStackTrace();
                 e.getCause();
             }
+            
         tbView.setItems(table);
     }
 

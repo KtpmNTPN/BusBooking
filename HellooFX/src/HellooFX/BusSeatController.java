@@ -63,7 +63,7 @@ public class BusSeatController implements Initializable {
         busTime.add(new BusTime(1, "10:00"));
         busTime.add(new BusTime(2, "13:00"));
         busTime.add(new BusTime(3,"14:00"));
-        busTime.add(new BusTime(3,"1:00"));
+        busTime.add(new BusTime(3,"3:00"));    
         Box.setItems(busNo);
         BoxTime.setItems(busTime);
         
