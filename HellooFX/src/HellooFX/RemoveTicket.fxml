@@ -67,7 +67,7 @@
             <Label layoutX="9.0" layoutY="297.0" prefHeight="25.0" prefWidth="111.0" text="oldSeat" />
          </children>
       </AnchorPane>
-      <Button fx:id="rmChangeButton" layoutX="185.0" layoutY="564.0" mnemonicParsing="false" onAction="#rmChangeButtonOnAction" prefHeight="53.0" prefWidth="218.0" style="-fx-background-color: pink; -fx-text-fill: Blue; -fx-font-size: 20px;" text="Remove" textAlignment="JUSTIFY">
+      <Button fx:id="rmRemoveButton" layoutX="185.0" layoutY="564.0" mnemonicParsing="false" onAction="#rmRemoveButtonOnAction" prefHeight="53.0" prefWidth="218.0" style="-fx-background-color: pink; -fx-text-fill: Blue; -fx-font-size: 20px;" text="Remove" textAlignment="JUSTIFY">
          <effect>
             <DropShadow />
          </effect>

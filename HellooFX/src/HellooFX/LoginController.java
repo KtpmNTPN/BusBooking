@@ -200,8 +200,9 @@ public class LoginController implements Initializable {
             while(queryResult.next()){
                 if(queryResult.getInt(1) == 1){
                     //loginMessageLabel.setText("Congratulations");
-                    userBookingFrom();
                     System.out.println("Login success");
+                    userBookingFrom();
+                    
                 }else{
                     loginMessageLabel.setText("Invaild login. Please try again");
                 }
@@ -242,6 +243,7 @@ public class LoginController implements Initializable {
             while(queryResult.next()){
                 if(queryResult.getInt(1) == 1){
                     //loginMessageLabel.setText("Congratulations");
+                    System.out.println("Login success");
                     adminBookingFrom();
                 }else{
                     adloginMessageLabel.setText("Invaild login. Please try again");

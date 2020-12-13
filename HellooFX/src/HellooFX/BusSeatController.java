@@ -60,7 +60,7 @@ public class BusSeatController implements Initializable {
         busNo.add(new BusNo(2, "Sài Gòn -> Đà Lạt"));
         busNo.add(new BusNo(3,"Nha Trang -> Sài Gòn"));
         busNo.add(new BusNo(3,"Nha Trang -> Đà Lạt"));
-        busTime.add(new BusTime(1, "10:00"));
+        busTime.add(new BusTime(1, "01:50"));
         busTime.add(new BusTime(2, "13:00"));
         busTime.add(new BusTime(3,"14:00"));
         busTime.add(new BusTime(3,"20:50"));    

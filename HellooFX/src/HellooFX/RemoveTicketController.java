@@ -81,9 +81,9 @@ public class RemoveTicketController implements Initializable {
     @FXML
     private TextField txtOldSeat;
     @FXML
-    private Button rmChangeButton;
-    @FXML
     private TextField txtMobileCheck;
+    @FXML
+    private Button rmRemoveButton;
 
     /**
      * Initializes the controller class.
@@ -207,7 +207,7 @@ public class RemoveTicketController implements Initializable {
     }
 
     @FXML
-    private void rmChangeButtonOnAction(ActionEvent event) {
+    private void rmRemoveButtonOnAction(ActionEvent event) {
         TableCheck table = tbView.getSelectionModel().getSelectedItem();
         String id = txtID.getText();
         String busno = table.getBusno();

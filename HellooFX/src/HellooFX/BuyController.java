@@ -113,6 +113,7 @@ public class BuyController implements Initializable {
         String cdate = dateFormat.format(now);
         String ctime = timeFormat.format(now);
         long expireTime = 1*60*5*1000;
+        long expireTimeb = 1*60*30*1000;
         String busno = Box.getSelectionModel().getSelectedItem().toString();
         DatabaseConnection connectNow = new DatabaseConnection();
         Connection connectDB = connectNow.getConnection();
@@ -131,11 +132,22 @@ public class BuyController implements Initializable {
                     Date date1 = format.parse(ctime);
                     Date date2 = format.parse(time);
                     long difference = date2.getTime() - date1.getTime();
-                    if((difference < expireTime) == true && cdate.equals(rs.getString(4))){
+                    if(((difference <= expireTimeb) == true && cdate.equals(rs.getString(4))&& rs.getString(6).equals("booked")))
+                    {
+                        try {
+                            PreparedStatement pst1 = connectDB.prepareStatement("update busseat set status = ? where status = 'booked' ");
+                            pst1.setString(1, status);
+                            pst1.executeUpdate();
+                            table.add(new Table(rs.getInt(1),rs.getString(2),rs.getInt(3),rs.getString(4), rs.getString(5),rs.getString(6)));
+                            tbView.setItems(table);
+                        } catch (Exception e) {
+                        }
+                    }
+                    else if(((difference <= expireTime) == true && cdate.equals(rs.getString(4))&& !rs.getString(6).equals("revoked"))){
                     for (int i = 1; i <= 45; i++) {
                         try {
                             int seats = i;
-                            PreparedStatement pst1 = connectDB.prepareStatement("update busseat set status = ? where busseat.seats = ? ");
+                            PreparedStatement pst1 = connectDB.prepareStatement("update busseat set status = ? where busseat.seats = ? and busseat.status = 'unbooked' ");
                             pst1.setString(1, status);
                             pst1.setInt(2, seats);
                 
@@ -146,11 +158,12 @@ public class BuyController implements Initializable {
                                 e.getCause();
                             }
                     }
-                    table.add(new Table(rs.getInt(1),rs.getString(2),rs.getInt(3),rs.getString(4), rs.getString(5),rs.getString(6)));
-                    tbView.setItems(table);
+                        table.add(new Table(rs.getInt(1),rs.getString(2),rs.getInt(3),rs.getString(4), rs.getString(5),rs.getString(6)));
+                        tbView.setItems(table);
                     
-                }else
-                    table.add(new Table(rs.getInt(1),rs.getString(2),rs.getInt(3),rs.getString(4), rs.getString(5),rs.getString(6)));        
+                    }else
+                        table.add(new Table(rs.getInt(1),rs.getString(2),rs.getInt(3),rs.getString(4), rs.getString(5),rs.getString(6)));        
+                
                 }
             } catch (Exception e) {
                 e.printStackTrace();
@@ -243,6 +256,14 @@ public class BuyController implements Initializable {
                 pst1.setString(2, seat);
                 
                 pst1.executeUpdate();
+                txtID.clear();
+                
+                txtSeats.clear();
+                txtCustomer.clear();
+                txtMobile.clear();
+                txtDate.clear();
+                txtTime.clear();
+                txtPrice.clear();
                 
 
             } catch (Exception e) {
