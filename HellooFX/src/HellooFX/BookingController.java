@@ -240,7 +240,7 @@ public class BookingController implements Initializable {
         long difference = date2.getTime() - date1.getTime();
         long expireTime = 1*60*60*1000;
         
-        if(!status.equals("booked") && !cdate.equals(table.getDate()) && (difference>expireTime) == true)
+        if(!cdate.equals(table.getDate()) || (status.equals("unbooked") && ((difference>expireTime) && cdate.equals(table.getDate()) )== false && !status.equals("revoked") && !status.equals("bought")))
         {
             txtID.setText(Integer.toString(table.getId()));
             txtSeats.setText(Integer.toString(table.getSeats()));

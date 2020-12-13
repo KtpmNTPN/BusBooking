@@ -127,12 +127,12 @@ public class ChangeTicketController implements Initializable {
                 
                 while(rs.next())
                 {
-                    String  time = rs.getString(5);
+                    String  time = rs.getString(7);
                     DateFormat format = new SimpleDateFormat("HH:mm");
                     Date date1 = format.parse(ctime);
                     Date date2 = format.parse(time);
                     long difference = date2.getTime() - date1.getTime();
-                    if((difference < expireTime) == true && cdate.equals(rs.getString(4))){
+                    if((difference < expireTime) == true && cdate.equals(rs.getString(6))){
                     for (int i = 1; i <= 45; i++) {
                         try {
                             int seats = i;
@@ -198,7 +198,7 @@ public class ChangeTicketController implements Initializable {
         long difference = date2.getTime() - date1.getTime();
         long expireTime = 1*60*60*1000;
         
-        if(!cdate.equals(table.getDate()) && (difference > expireTime) == true)
+        if(!cdate.equals(table.getDate()) || (((difference>expireTime) && cdate.equals(table.getDate()) )== true))
         {
             txtID.setText(Integer.toString(table.getId()));
             txtSeats.setText(Integer.toString(table.getSeat()));

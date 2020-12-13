@@ -11,6 +11,7 @@ module HellooFX {
     requires java.base;
     requires mysql.connector.java;
     requires java.sql;
+    requires org.junit.jupiter.engine;
    
     
     opens HellooFX;

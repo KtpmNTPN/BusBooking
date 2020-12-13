@@ -201,6 +201,7 @@ public class LoginController implements Initializable {
                 if(queryResult.getInt(1) == 1){
                     //loginMessageLabel.setText("Congratulations");
                     userBookingFrom();
+                    System.out.println("Login success");
                 }else{
                     loginMessageLabel.setText("Invaild login. Please try again");
                 }

@@ -184,6 +184,7 @@ public class BuyController implements Initializable {
     @FXML
     private void tableMouseClicked(MouseEvent event) throws ParseException {
         Table table = tbView.getSelectionModel().getSelectedItem();
+        String status = table.getStatus();
         Date now = new Date();
         DateFormat dateFormat = null;
         DateFormat timeFormat = null;
@@ -198,7 +199,7 @@ public class BuyController implements Initializable {
         long difference = date2.getTime() - date1.getTime();
         long expireTime = 1*60*5*1000;
         
-        if(!status.equals("booked") && !cdate.equals(table.getDate()) && (difference>expireTime) == true && !status.equals("revoked"))
+        if(!cdate.equals(table.getDate()) || (status.equals("unbooked") && ((difference>expireTime) && cdate.equals(table.getDate()) )== true && !status.equals("revoked") && !status.equals("booked")))
         {
             txtID.setText(Integer.toString(table.getId()));
             txtSeats.setText(Integer.toString(table.getSeats()));
