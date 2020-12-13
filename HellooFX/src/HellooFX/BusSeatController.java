@@ -62,8 +62,8 @@ public class BusSeatController implements Initializable {
         busNo.add(new BusNo(3,"Nha Trang -> Đà Lạt"));
         busTime.add(new BusTime(1, "10:00"));
         busTime.add(new BusTime(2, "13:00"));
-        busTime.add(new BusTime(3,"14:00"));
-        busTime.add(new BusTime(3,"3:25"));    
+        busTime.add(new BusTime(3,"17:00"));
+        busTime.add(new BusTime(3,"15:50"));    
         Box.setItems(busNo);
         BoxTime.setItems(busTime);
         
@@ -92,6 +92,7 @@ public class BusSeatController implements Initializable {
 
     @FXML
     private void bSAddButtonOnAction(ActionEvent event) {
+        
         String busno = Box.getSelectionModel().getSelectedItem().toString();
         String bustime = BoxTime.getSelectionModel().getSelectedItem().toString();
         DatabaseConnection connectNow = new DatabaseConnection();
