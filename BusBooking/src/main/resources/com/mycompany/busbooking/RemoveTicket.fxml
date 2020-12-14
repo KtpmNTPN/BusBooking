@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane fx:id="anchorPane" prefHeight="644.0" prefWidth="940.0" style="-fx-background-color: pink;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.busbooking.RemoveTicketController">
+   <children>
+      <AnchorPane layoutX="102.0" layoutY="138.0">
+         <effect>
+            <DropShadow />
+         </effect>
+      </AnchorPane>
+      <Label alignment="CENTER" layoutX="293.0" layoutY="48.0" prefHeight="45.0" prefWidth="355.0" style="-fx-text-fill: Blue; -fx-background-color: pink; -fx-font-size: 30px;" text="Remove Ticket" textAlignment="JUSTIFY">
+         <effect>
+            <DropShadow />
+         </effect>
+      </Label>
+      <Label alignment="CENTER" layoutX="144.0" layoutY="116.0" prefHeight="45.0" prefWidth="144.0" style="-fx-text-fill: Blue; -fx-background-color: pink; -fx-font-size: 30px;" text="Mobile" textAlignment="JUSTIFY">
+         <effect>
+            <DropShadow />
+         </effect>
+      </Label>
+      <Button fx:id="rmCheckButton" layoutX="648.0" layoutY="112.0" mnemonicParsing="false" onAction="#rmCheckButtonOnAction" prefHeight="53.0" prefWidth="218.0" style="-fx-background-color: pink; -fx-text-fill: Blue; -fx-font-size: 20px;" text="Check" textAlignment="JUSTIFY">
+         <effect>
+            <DropShadow />
+         </effect>
+      </Button>
+      <Button fx:id="rmBackButton" layoutX="566.0" layoutY="564.0" mnemonicParsing="false" onAction="#rmBackButtonOnAction" prefHeight="53.0" prefWidth="218.0" style="-fx-background-color: pink; -fx-text-fill: Blue; -fx-font-size: 20px;" text="Back" textAlignment="JUSTIFY">
+         <effect>
+            <DropShadow />
+         </effect>
+      </Button>
+      <TableView fx:id="tbView" layoutX="294.0" layoutY="188.0" onMouseClicked="#tableMouseClicked" prefHeight="353.0" prefWidth="646.0">
+         <columns>
+            <TableColumn fx:id="id" prefWidth="38.0" text="id" />
+            <TableColumn fx:id="busno" prefWidth="129.0" text="busno" />
+            <TableColumn fx:id="seat" prefWidth="79.0" text="seats" />
+            <TableColumn fx:id="customer" prefWidth="85.0" text="customer" />
+            <TableColumn fx:id="mobile" prefWidth="87.0" text="mobile" />
+            <TableColumn fx:id="date" prefWidth="78.0" text="date" />
+            <TableColumn fx:id="time" prefWidth="68.0" text="time" />
+            <TableColumn fx:id="price" prefWidth="81.0" text="price" />
+         </columns>
+      </TableView>
+      <AnchorPane layoutX="-2.0" layoutY="188.0" prefHeight="353.0" prefWidth="291.0">
+         <children>
+            <TextField fx:id="txtCustomer" layoutX="128.0" layoutY="55.0" promptText="Customer" />
+            <TextField fx:id="txtSeats" layoutX="128.0" layoutY="94.0" promptText="Seats" />
+            <TextField fx:id="txtMobile" layoutX="128.0" layoutY="137.0" promptText="Mobile" />
+            <TextField fx:id="txtDate" layoutX="128.0" layoutY="177.0" promptText="Date" />
+            <TextField fx:id="txtTime" layoutX="128.0" layoutY="220.0" promptText="Time" />
+            <Label layoutX="9.0" layoutY="55.0" prefHeight="25.0" prefWidth="111.0" text="Customer" />
+            <Label layoutX="9.0" layoutY="94.0" prefHeight="25.0" prefWidth="111.0" text="Seats" />
+            <Label layoutX="9.0" layoutY="137.0" prefHeight="25.0" prefWidth="111.0" text="Mobile" />
+            <Label layoutX="9.0" layoutY="177.0" prefHeight="25.0" prefWidth="111.0" text="Date" />
+            <Label layoutX="9.0" layoutY="220.0" prefHeight="25.0" prefWidth="111.0" text="Time" />
+            <Label layoutX="9.0" layoutY="262.0" prefHeight="25.0" prefWidth="111.0" text="Price" />
+            <TextField fx:id="txtPrice" layoutX="128.0" layoutY="262.0" promptText="Price" />
+            <Label layoutX="9.0" layoutY="22.0" prefHeight="25.0" prefWidth="111.0" text="Id" />
+            <TextField fx:id="txtID" layoutX="128.0" layoutY="22.0" promptText="Id" />
+            <TextField fx:id="txtOldSeat" layoutX="128.0" layoutY="297.0" promptText="OldSeat" />
+            <Label layoutX="9.0" layoutY="297.0" prefHeight="25.0" prefWidth="111.0" text="oldSeat" />
+         </children>
+      </AnchorPane>
+      <Button fx:id="rmRemoveButton" layoutX="185.0" layoutY="564.0" mnemonicParsing="false" onAction="#rmRemoveButtonOnAction" prefHeight="53.0" prefWidth="218.0" style="-fx-background-color: pink; -fx-text-fill: Blue; -fx-font-size: 20px;" text="Remove" textAlignment="JUSTIFY">
+         <effect>
+            <DropShadow />
+         </effect>
+      </Button>
+      <TextField fx:id="txtMobileCheck" layoutX="329.0" layoutY="118.0" prefHeight="45.0" prefWidth="291.0" promptText="Mobile" />
+   </children>
+</AnchorPane>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane fx:id="anchorPane" prefHeight="644.0" prefWidth="940.0" style="-fx-background-color: pink;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.busbooking.UserBookingController">
+   <children>
+      <AnchorPane layoutX="102.0" layoutY="138.0">
+         <children>
+            <ImageView fx:id="tabPane" fitHeight="368.0" fitWidth="407.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../Image/UTB8VHyqoL2JXKJkSanr7613lVXaw.png" />
+               </image>
+            </ImageView>
+         </children>
+         <effect>
+            <DropShadow />
+         </effect>
+      </AnchorPane>
+      <Label alignment="CENTER" layoutX="303.0" layoutY="51.0" prefHeight="45.0" prefWidth="355.0" style="-fx-text-fill: Blue; -fx-background-color: pink; -fx-font-size: 30px;" text="OU BusBooking" textAlignment="JUSTIFY">
+         <effect>
+            <DropShadow />
+         </effect>
+      </Label>
+      <Button fx:id="ubBookingButton" layoutX="602.0" layoutY="205.0" mnemonicParsing="false" onAction="#ubBookingButtonOnAction" prefHeight="53.0" prefWidth="218.0" style="-fx-background-color: pink; -fx-text-fill: Blue; -fx-font-size: 20px;" text="Booking" textAlignment="JUSTIFY">
+         <effect>
+            <DropShadow />
+         </effect>
+      </Button>
+      <Button fx:id="uBExitButton" layoutX="602.0" layoutY="480.0" mnemonicParsing="false" onAction="#uBExitButtonOnAction" prefHeight="53.0" prefWidth="218.0" style="-fx-background-color: pink; -fx-text-fill: Blue; -fx-font-size: 20px;" text="Exit" textAlignment="JUSTIFY">
+         <effect>
+            <DropShadow />
+         </effect>
+      </Button>
+      <Button fx:id="ubRemoveTicketButton" layoutX="602.0" layoutY="337.0" mnemonicParsing="false" onAction="#ubRemoveTicketButtonOnAction" prefHeight="53.0" prefWidth="218.0" style="-fx-background-color: pink; -fx-text-fill: Blue; -fx-font-size: 20px;" text="Remove Ticket" textAlignment="JUSTIFY">
+         <effect>
+            <DropShadow />
+         </effect>
+      </Button>
+      <Button fx:id="ubPrintTicketButton" layoutX="602.0" layoutY="409.0" mnemonicParsing="false" onAction="#ubPrintTicketButtonOnAction" prefHeight="53.0" prefWidth="218.0" style="-fx-background-color: pink; -fx-text-fill: Blue; -fx-font-size: 20px;" text="Print Ticket" textAlignment="JUSTIFY">
+         <effect>
+            <DropShadow />
+         </effect>
+      </Button>
+      <Button fx:id="ubChangeTicketButton" layoutX="602.0" layoutY="269.0" mnemonicParsing="false" onAction="#ubChangeTicketButtonOnAction" prefHeight="53.0" prefWidth="218.0" style="-fx-background-color: pink; -fx-text-fill: Blue; -fx-font-size: 20px;" text="Change Ticket" textAlignment="JUSTIFY">
+         <effect>
+            <DropShadow />
+         </effect>
+      </Button>
+      <Button fx:id="ubBuyButton" layoutX="602.0" layoutY="138.0" mnemonicParsing="false" onAction="#ubBuyButtonOnAction" prefHeight="53.0" prefWidth="218.0" style="-fx-background-color: pink; -fx-text-fill: Blue; -fx-font-size: 20px;" text="Buy Ticket" textAlignment="JUSTIFY">
+         <effect>
+            <DropShadow />
+         </effect>
+      </Button>
+   </children>
+</AnchorPane>
